@@ -1,13 +1,15 @@
 ﻿using AutoMapper;
 using Domain.Abstractions;
 using Domain.Entities;
-using System.Linq.Expressions;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
     public abstract class BaseCrudServices<TEntity, TDto, TCreateDto, TUpdateDto>
         : ICrudServices<TDto, TCreateDto, TUpdateDto>
-        where TEntity : Common
+        where TEntity : Common, IHasId, class
     {
         protected readonly IUnitOfWork unitOfWork;
         protected readonly IMapper mapper;
@@ -28,7 +30,9 @@ namespace Application.Interfaces
 
         public async Task<TDto?> GetById(int id)
         {
-            var list = await repo.GetAllAsyncWitFillter(new List<Expression<Func<TEntity, bool>>> { x => EFId(x) == id });
+            var list = await repo.GetAllAsyncWitFillter(
+                new List<System.Linq.Expressions.Expression<System.Func<TEntity, bool>>> { x => x.Id == id });
+
             var entity = list.FirstOrDefault();
             return entity == null ? default : mapper.Map<TDto>(entity);
         }
@@ -44,7 +48,10 @@ namespace Application.Interfaces
         public async Task<bool> Update(TUpdateDto dto)
         {
             var entityId = GetUpdateId(dto);
-            var list = await repo.GetAllAsyncWitFillter(new List<Expression<Func<TEntity, bool>>> { x => EFId(x) == entityId });
+
+            var list = await repo.GetAllAsyncWitFillter(
+                new List<System.Linq.Expressions.Expression<System.Func<TEntity, bool>>> { x => x.Id == entityId });
+
             var entity = list.FirstOrDefault();
             if (entity == null) return false;
 
@@ -56,7 +63,9 @@ namespace Application.Interfaces
 
         public async Task<bool> SoftDelete(int id)
         {
-            var list = await repo.GetAllAsyncWitFillter(new List<Expression<Func<TEntity, bool>>> { x => EFId(x) == id });
+            var list = await repo.GetAllAsyncWitFillter(
+                new List<System.Linq.Expressions.Expression<System.Func<TEntity, bool>>> { x => x.Id == id });
+
             var entity = list.FirstOrDefault();
             if (entity == null) return false;
 
@@ -67,7 +76,6 @@ namespace Application.Interfaces
         }
 
         // Helpers
-        protected abstract int EFId(TEntity entity);
         protected abstract int GetUpdateId(TUpdateDto dto);
     }
 }

@@ -7,20 +7,16 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Entities
 {
-    // Identity user MUST inherit IdentityUser<TKey>
-    public class ApplicationUser : IdentityUser<int>
+    public class ApplicationUser : IdentityUser<Guid>
     {
-        // ---- "Common" fields (same behavior as Common) ----
+        // نفس خصائص Common (لكن بدون Id لأنه موجود أصلاً في IdentityUser<Guid>)
         public bool Active { get; set; } = true;
         public bool IsAvilable { get; set; } = true;
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
 
-        // ---- Business role (separate from IdentityRole) ----
-        // This is your ERD role: Brand/Influencer/Agency/Admin/User
         public string AppRole { get; set; } = "User";
 
-        // Navigation
         public UserProfile? UserProfile { get; set; }
         public InfluencerProfile? InfluencerProfile { get; set; }
 
@@ -34,4 +30,5 @@ namespace Domain.Entities
         public ICollection<InfluencerAsset> InfluencerAssets { get; set; } = new List<InfluencerAsset>();
     }
 }
+
 

@@ -2,7 +2,6 @@
 using AutoMapper;
 using Domain.Abstractions;
 using Domain.Entities;
-using Domain.Entities.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

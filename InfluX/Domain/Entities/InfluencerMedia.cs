@@ -1,5 +1,4 @@
-﻿using Domain.Entities.Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +8,6 @@ namespace Domain.Entities
 {
     public class InfluencerMedia : Common
     {
-        public int Id { get; set; }
 
         public int InfluencerId { get; set; }
         public ApplicationUser Influencer { get; set; } = null!;

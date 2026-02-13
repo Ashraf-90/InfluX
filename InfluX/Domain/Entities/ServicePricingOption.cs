@@ -8,7 +8,6 @@ namespace Domain.Entities
 {
     public class ServicePricingOption : Common
     {
-        public int Id { get; set; }
 
         public int ServiceListingId { get; set; }
         public ServiceListing ServiceListing { get; set; } = null!;

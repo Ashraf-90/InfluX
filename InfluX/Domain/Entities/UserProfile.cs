@@ -8,7 +8,6 @@ namespace Domain.Entities
 {
     public class UserProfile : Common
     {
-        public int Id { get; set; }
 
         public int UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;

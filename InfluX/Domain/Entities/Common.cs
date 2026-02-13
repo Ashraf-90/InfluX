@@ -8,6 +8,7 @@ namespace Domain.Entities
 {
     public class Common
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
         public bool Active { get; set; } = true;
         public bool IsAvilable { get; set; } = true;
         public DateTime CreateDate { get; set; }
