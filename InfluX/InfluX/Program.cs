@@ -1,73 +1,82 @@
 using Application.Interfaces;
 using Domain.Abstractions;
+using Domain.Entities;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Reposities;
-
-
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 
+// DbContext (Identity + App Entities)
+builder.Services.AddDbContext<AppDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CONSTR")));
 
+// Identity (int keys)
+builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
 
+    options.User.RequireUniqueEmail = true;
 
+    // lockout optional
+    options.Lockout.AllowedForNewUsers = true;
+    options.Lockout.MaxFailedAccessAttempts = 5;
+})
+.AddEntityFrameworkStores<AppDBContext>()
+.AddDefaultTokenProviders();
 
-//=================== For Connection String =================================
-builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CONSTR")));
+// Cookie paths (MVC)
+builder.Services.ConfigureApplicationCookie(opt =>
+{
+    opt.LoginPath = "/Auth/Login";
+    opt.LogoutPath = "/Auth/Logout";
+    opt.AccessDeniedPath = "/Auth/AccessDenied";
+});
 
-
-//=================== For Register The Interface  =================================
-// From Instructur
+// Your UoW + Services
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
 
 builder.Services.AddScoped<IMetaPagesServices, MetaPagesServices>();
 builder.Services.AddScoped<IKeyWordsServices, KeyWordsServices>();
 builder.Services.AddScoped<IPixelsServices, PixelsServices>();
 
+// Identity-aware user service
+builder.Services.AddScoped<IIdentityUserServices, IdentityUserServices>();
 
-
+// Generic CRUD for Common entities + specific services (below you will add)
+builder.Services.AddScoped<INicheServices, NicheServices>();
+builder.Services.AddScoped<IUserNicheServices, UserNicheServices>();
+builder.Services.AddScoped<IUserKeyWordServices, UserKeyWordServices>();
+builder.Services.AddScoped<ISocialAccountServices, SocialAccountServices>();
+builder.Services.AddScoped<IInfluencerProfileServices, InfluencerProfileServices>();
+builder.Services.AddScoped<IUserProfileServices, UserProfileServices>();
+builder.Services.AddScoped<IVerificationRequestServices, VerificationRequestServices>();
+builder.Services.AddScoped<IServiceListingServices, ServiceListingServices>();
+builder.Services.AddScoped<IServicePricingOptionServices, ServicePricingOptionServices>();
+builder.Services.AddScoped<IInfluencerMediaServices, InfluencerMediaServices>();
+builder.Services.AddScoped<IInfluencerAssetServices, InfluencerAssetServices>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddSession();
 builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
-
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/EN/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
-
 
 app.UseSession();
 app.UseHttpsRedirection();
@@ -81,6 +90,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 
 app.Run();

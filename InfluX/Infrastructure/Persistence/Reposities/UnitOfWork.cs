@@ -1,10 +1,6 @@
 ﻿using Domain.Abstractions;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Entities.Domain.Entities;
 
 namespace Infrastructure.Persistence.Reposities
 {
@@ -12,45 +8,54 @@ namespace Infrastructure.Persistence.Reposities
     {
         private readonly AppDBContext _context;
 
-        //===================  SEO ===================
         private IRepository<MetaPages> _MetaPages;
         private IRepository<KeyWords> _KeyWords;
         private IRepository<Pixels> _Pixels;
+
+        private IRepository<UserProfile> _UserProfiles;
+        private IRepository<InfluencerProfile> _InfluencerProfiles;
+        private IRepository<SocialAccount> _SocialAccounts;
+
+        private IRepository<Niche> _Niches;
+        private IRepository<UserNiche> _UserNiches;
+
+        private IRepository<UserKeyWord> _UserKeyWords;
+        private IRepository<VerificationRequest> _VerificationRequests;
+
+        private IRepository<ServiceListing> _ServiceListings;
+        private IRepository<ServicePricingOption> _ServicePricingOptions;
+
+        private IRepository<InfluencerMedia> _InfluencerMedia;
+        private IRepository<InfluencerAsset> _InfluencerAssets;
 
         public UnitOfWork(AppDBContext context)
         {
             _context = context;
         }
 
-
-
-
-
-
-
-
-        //********************************* Get list **************************************************************
-
         public IRepository<MetaPages> MetaPages => _MetaPages ??= new Repository<MetaPages>(_context);
         public IRepository<KeyWords> KeyWords => _KeyWords ??= new Repository<KeyWords>(_context);
         public IRepository<Pixels> Pixels => _Pixels ??= new Repository<Pixels>(_context);
 
+        public IRepository<UserProfile> UserProfiles => _UserProfiles ??= new Repository<UserProfile>(_context);
+        public IRepository<InfluencerProfile> InfluencerProfiles => _InfluencerProfiles ??= new Repository<InfluencerProfile>(_context);
+        public IRepository<SocialAccount> SocialAccounts => _SocialAccounts ??= new Repository<SocialAccount>(_context);
 
-        public async Task<int> CompleteAsync()
-        {
-            return await _context.SaveChangesAsync();
-        }
+        public IRepository<Niche> Niches => _Niches ??= new Repository<Niche>(_context);
+        public IRepository<UserNiche> UserNiches => _UserNiches ??= new Repository<UserNiche>(_context);
 
-        public async Task<int> SaveChangesAsync()
-        {
-            return await _context.SaveChangesAsync();
-        }
+        public IRepository<UserKeyWord> UserKeyWords => _UserKeyWords ??= new Repository<UserKeyWord>(_context);
+        public IRepository<VerificationRequest> VerificationRequests => _VerificationRequests ??= new Repository<VerificationRequest>(_context);
 
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
+        public IRepository<ServiceListing> ServiceListings => _ServiceListings ??= new Repository<ServiceListing>(_context);
+        public IRepository<ServicePricingOption> ServicePricingOptions => _ServicePricingOptions ??= new Repository<ServicePricingOption>(_context);
 
-        
+        public IRepository<InfluencerMedia> InfluencerMedia => _InfluencerMedia ??= new Repository<InfluencerMedia>(_context);
+        public IRepository<InfluencerAsset> InfluencerAssets => _InfluencerAssets ??= new Repository<InfluencerAsset>(_context);
+
+        public async Task<int> CompleteAsync() => await _context.SaveChangesAsync();
+        public async Task<int> SaveChangesAsync() => await _context.SaveChangesAsync();
+
+        public void Dispose() => _context.Dispose();
     }
 }

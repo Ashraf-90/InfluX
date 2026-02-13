@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C2626B76-32C5-4B64-B482-E93C54441BA5}|Infrastructure\\Infrastructure.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\infrastructure\\persistence\\reposities\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2626B76-32C5-4B64-B482-E93C54441BA5}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\reposities\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\interfaces\\userprofileservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\interfaces\\userprofileservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C2626B76-32C5-4B64-B482-E93C54441BA5}|Infrastructure\\Infrastructure.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\infrastructure\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2626B76-32C5-4B64-B482-E93C54441BA5}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B35E9062-5489-46F7-91AE-6526E7AD28EE}|Domain\\Domain.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\domain\\abstractions\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B35E9062-5489-46F7-91AE-6526E7AD28EE}|Domain\\Domain.csproj|solutionrelative:domain\\abstractions\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\dtos\\verificationrequestdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\dtos\\verificationrequestdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,40 +31,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UnitOfWork.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Persistence\\Reposities\\UnitOfWork.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\Reposities\\UnitOfWork.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Persistence\\Reposities\\UnitOfWork.cs",
-              "RelativeToolTip": "Infrastructure\\Persistence\\Reposities\\UnitOfWork.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAwCAAAAAAAAAAAAAAAA==",
+              "Title": "UserProfileServices.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\UserProfileServices.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\UserProfileServices.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\UserProfileServices.cs",
+              "RelativeToolTip": "Application\\Interfaces\\UserProfileServices.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAhwBEAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T10:23:40.32Z",
+              "WhenOpened": "2026-02-13T11:44:44.596Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AppDBContext.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Persistence\\AppDBContext.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\AppDBContext.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Persistence\\AppDBContext.cs",
-              "RelativeToolTip": "Infrastructure\\Persistence\\AppDBContext.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAWwBQAAAAFAAAAAAAAAA==",
+              "Title": "VerificationRequestDtos.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\DTOs\\VerificationRequestDtos.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\VerificationRequestDtos.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\DTOs\\VerificationRequestDtos.cs",
+              "RelativeToolTip": "Application\\DTOs\\VerificationRequestDtos.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAA7wCYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T10:23:19.145Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IUnitOfWork.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Domain\\Abstractions\\IUnitOfWork.cs",
-              "RelativeDocumentMoniker": "Domain\\Abstractions\\IUnitOfWork.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Domain\\Abstractions\\IUnitOfWork.cs",
-              "RelativeToolTip": "Domain\\Abstractions\\IUnitOfWork.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T10:22:59.255Z",
+              "WhenOpened": "2026-02-13T11:44:19.019Z",
               "EditorCaption": ""
             }
           ]
