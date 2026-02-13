@@ -37,9 +37,6 @@ namespace Application.Interfaces
             if (!result.Succeeded)
                 return (false, string.Join(" | ", result.Errors.Select(e => e.Description)));
 
-            // Optional: create IdentityRole mapping too (if you want)
-            // await userManager.AddToRoleAsync(user, dto.AppRole);
-
             return (true, "User created successfully");
         }
 
@@ -52,7 +49,9 @@ namespace Application.Interfaces
             if (user == null || !user.Active)
                 return (false, "Invalid credentials");
 
-            var result = await signInManager.PasswordSignInAsync(user, dto.Password, dto.RememberMe, lockoutOnFailure: true);
+            var result = await signInManager.PasswordSignInAsync(
+                user, dto.Password, dto.RememberMe, lockoutOnFailure: true);
+
             return result.Succeeded ? (true, "Logged in") : (false, "Invalid credentials");
         }
 
@@ -62,16 +61,16 @@ namespace Application.Interfaces
             return true;
         }
 
-        public async Task<IdentityUserDto?> GetById(int id)
+        public async Task<IdentityUserDto?> GetById(Guid userId)
         {
-            var user = await userManager.FindByIdAsync(id.ToString());
+            var user = await userManager.FindByIdAsync(userId.ToString());
             if (user == null) return null;
             return mapper.Map<IdentityUserDto>(user);
         }
 
         public async Task<bool> Update(IdentityUserUpdateDto dto)
         {
-            var user = await userManager.FindByIdAsync(dto.Id.ToString());
+            var user = await userManager.FindByIdAsync(dto.UserId.ToString());
             if (user == null) return false;
 
             user.PhoneNumber = dto.PhoneNumber;
@@ -83,10 +82,9 @@ namespace Application.Interfaces
             return result.Succeeded;
         }
 
-        // SoftDelete => Active=false (Identity rows stay)
-        public async Task<bool> SoftDelete(int id)
+        public async Task<bool> SoftDelete(Guid userId)
         {
-            var user = await userManager.FindByIdAsync(id.ToString());
+            var user = await userManager.FindByIdAsync(userId.ToString());
             if (user == null) return false;
 
             user.Active = false;
@@ -95,3 +93,4 @@ namespace Application.Interfaces
         }
     }
 }
+

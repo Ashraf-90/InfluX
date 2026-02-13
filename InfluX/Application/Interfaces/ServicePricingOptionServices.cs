@@ -15,8 +15,8 @@ namespace Application.Interfaces
         public ServicePricingOptionServices(IUnitOfWork uow, IMapper mapper)
             : base(uow, mapper, uow.ServicePricingOptions) { }
 
-        protected override int EFId(ServicePricingOption entity) => entity.Id;
-        protected override int GetUpdateId(ServicePricingOptionUpdateDto dto) => dto.Id;
+        protected override Guid GetUpdateId(ServicePricingOptionUpdateDto dto) => dto.Id;
     }
 }
+
 

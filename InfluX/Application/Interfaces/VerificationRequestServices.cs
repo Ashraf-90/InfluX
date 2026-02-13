@@ -15,8 +15,8 @@ namespace Application.Interfaces
         public VerificationRequestServices(IUnitOfWork uow, IMapper mapper)
             : base(uow, mapper, uow.VerificationRequests) { }
 
-        protected override int EFId(VerificationRequest entity) => entity.Id;
-        protected override int GetUpdateId(VerificationRequestUpdateDto dto) => dto.Id;
+        protected override Guid GetUpdateId(VerificationRequestUpdateDto dto) => dto.Id;
     }
 }
+
 

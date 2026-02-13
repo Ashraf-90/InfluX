@@ -15,8 +15,8 @@ namespace Application.Interfaces
         public UserProfileServices(IUnitOfWork uow, IMapper mapper)
             : base(uow, mapper, uow.UserProfiles) { }
 
-        protected override int EFId(UserProfile entity) => entity.Id;
-        protected override int GetUpdateId(UserProfileUpdateDto dto) => dto.Id;
+        protected override Guid GetUpdateId(UserProfileUpdateDto dto) => dto.Id;
     }
 }
+
 

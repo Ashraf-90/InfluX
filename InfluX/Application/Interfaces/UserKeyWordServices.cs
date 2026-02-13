@@ -10,13 +10,13 @@ using Domain.Entities;
 
 namespace Application.Interfaces
 {
-    public class UserKeyWordServices : BaseCrudServices<UserKeyWord, UserKeyWordDto, UserKeyWordCreateDto, UserKeyWordCreateDto>, IUserKeyWordServices
+    public class UserKeyWordServices : BaseCrudServices<UserKeyWord, UserKeyWordDto, UserKeyWordCreateDto, UserKeyWordUpdateDto>, IUserKeyWordServices
     {
         public UserKeyWordServices(IUnitOfWork uow, IMapper mapper)
             : base(uow, mapper, uow.UserKeyWords) { }
 
-        protected override int EFId(UserKeyWord entity) => entity.Id;
-        protected override int GetUpdateId(UserKeyWordCreateDto dto) => 0;
+        protected override Guid GetUpdateId(UserKeyWordUpdateDto dto) => dto.Id;
     }
 }
+
 

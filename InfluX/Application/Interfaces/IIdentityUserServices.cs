@@ -12,9 +12,11 @@ namespace Application.Interfaces
         Task<(bool ok, string message)> Register(IdentityUserCreateDto dto);
         Task<(bool ok, string message)> Login(LoginDto dto);
         Task<bool> Logout();
-        Task<IdentityUserDto?> GetById(int id);
+
+        Task<IdentityUserDto?> GetById(Guid userId);
         Task<bool> Update(IdentityUserUpdateDto dto);
-        Task<bool> SoftDelete(int id);
+        Task<bool> SoftDelete(Guid userId);
     }
 }
+
 

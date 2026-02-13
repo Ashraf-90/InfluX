@@ -10,13 +10,13 @@ using Domain.Entities;
 
 namespace Application.Interfaces
 {
-    public class UserNicheServices : BaseCrudServices<UserNiche, UserNicheDto, UserNicheCreateDto, UserNicheCreateDto>, IUserNicheServices
+    public class UserNicheServices : BaseCrudServices<UserNiche, UserNicheDto, UserNicheCreateDto, UserNicheUpdateDto>, IUserNicheServices
     {
         public UserNicheServices(IUnitOfWork uow, IMapper mapper)
             : base(uow, mapper, uow.UserNiches) { }
 
-        protected override int EFId(UserNiche entity) => entity.Id;
-        protected override int GetUpdateId(UserNicheCreateDto dto) => 0; // Not used (we use same dto)
+        protected override Guid GetUpdateId(UserNicheUpdateDto dto) => dto.Id;
     }
 }
+
 

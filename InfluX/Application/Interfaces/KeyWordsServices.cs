@@ -15,61 +15,64 @@ namespace Application.Interfaces
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
+
         public KeyWordsServices(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
 
-        public async Task<bool> AddNewKeyWords(KeyWordsDTo createKeyWordsDTo)
-        {
-            var data = mapper.Map<KeyWords>(createKeyWordsDTo);
-            var result = await unitOfWork.KeyWords.AddAsync(data);
-            await unitOfWork.SaveChangesAsync();
-            return result;
-        }
-
-        public async Task<bool> UpdateKeyWords(KeyWordsDTo updateKeyWordsDTo)
-        {
-            var KeyWords = await unitOfWork.KeyWords.GetAllAsyncWitFillter(
-                new List<Expression<Func<KeyWords, bool>>> { x => x.Id == updateKeyWordsDTo.Id });
-
-            var entity = KeyWords.FirstOrDefault();
-            if (entity == null) return false;
-
-            mapper.Map(updateKeyWordsDTo, entity); // AutoMapper updates fields
-            var result = await unitOfWork.KeyWords.UpdateAsync(entity);
-            await unitOfWork.SaveChangesAsync();
-            return result;
-        }
-
-        public async Task<IEnumerable<KeyWordsDTo>> GetAllKeyWords()
+        public async Task<IEnumerable<KeyWordsDto>> GetAllKeyWords()
         {
             var data = await unitOfWork.KeyWords.GetAllAsync();
-            var result = mapper.Map<IEnumerable<KeyWordsDTo>>(data);
-
-            return result;
+            return mapper.Map<IEnumerable<KeyWordsDto>>(data);
         }
 
-        public async Task<KeyWordsDTo?> GetMetaPageById(int id)
+        public async Task<KeyWordsDto?> GetById(Guid id)
         {
-            var KeyWords = await unitOfWork.KeyWords.GetAllFillterIncludeData(filters: new List<Expression<Func<KeyWords, bool>>> { x => x.Id == id });
-            var entity = KeyWords.FirstOrDefault();
-            return entity == null ? null : mapper.Map<KeyWordsDTo>(entity);
+            var list = await unitOfWork.KeyWords.GetAllAsyncWitFillter(
+                new List<Expression<Func<KeyWords, bool>>> { x => x.Id == id });
+
+            var entity = list.FirstOrDefault();
+            return entity == null ? null : mapper.Map<KeyWordsDto>(entity);
         }
 
-        public async Task<bool> DeleteKeyWordsAsync(int id)
+        public async Task<bool> AddNewKeyWords(KeyWordsCreateDto dto)
         {
-            var allKeyWords = await unitOfWork.KeyWords.GetAllAsync();
-            var DeletedKeyWord = allKeyWords.Where(b => b.Id == id);
-
-            if (DeletedKeyWord == null || !DeletedKeyWord.Any())
-                return false;
-
-            unitOfWork.KeyWords.DeleteRange(DeletedKeyWord);
+            var entity = mapper.Map<KeyWords>(dto);
+            var ok = await unitOfWork.KeyWords.AddAsync(entity);
             await unitOfWork.SaveChangesAsync();
-            return true;
+            return ok;
         }
 
+        public async Task<bool> UpdateKeyWords(KeyWordsUpdateDto dto)
+        {
+            var list = await unitOfWork.KeyWords.GetAllAsyncWitFillter(
+                new List<Expression<Func<KeyWords, bool>>> { x => x.Id == dto.Id });
+
+            var entity = list.FirstOrDefault();
+            if (entity == null) return false;
+
+            mapper.Map(dto, entity);
+            var ok = await unitOfWork.KeyWords.UpdateAsync(entity);
+            await unitOfWork.SaveChangesAsync();
+            return ok;
+        }
+
+        // SoftDelete
+        public async Task<bool> DeleteKeyWordsAsync(Guid id)
+        {
+            var list = await unitOfWork.KeyWords.GetAllAsyncWitFillter(
+                new List<Expression<Func<KeyWords, bool>>> { x => x.Id == id });
+
+            var entity = list.FirstOrDefault();
+            if (entity == null) return false;
+
+            entity.Active = false;
+            var ok = await unitOfWork.KeyWords.UpdateAsync(entity);
+            await unitOfWork.SaveChangesAsync();
+            return ok;
+        }
     }
 }
+

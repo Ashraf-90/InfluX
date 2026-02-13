@@ -15,8 +15,8 @@ namespace Application.Interfaces
         public InfluencerMediaServices(IUnitOfWork uow, IMapper mapper)
             : base(uow, mapper, uow.InfluencerMedia) { }
 
-        protected override int EFId(InfluencerMedia entity) => entity.Id;
-        protected override int GetUpdateId(InfluencerMediaUpdateDto dto) => dto.Id;
+        protected override Guid GetUpdateId(InfluencerMediaUpdateDto dto) => dto.Id;
     }
 }
+
 

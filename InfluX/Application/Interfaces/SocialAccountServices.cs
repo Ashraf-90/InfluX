@@ -15,8 +15,8 @@ namespace Application.Interfaces
         public SocialAccountServices(IUnitOfWork uow, IMapper mapper)
             : base(uow, mapper, uow.SocialAccounts) { }
 
-        protected override int EFId(SocialAccount entity) => entity.Id;
-        protected override int GetUpdateId(SocialAccountUpdateDto dto) => dto.Id;
+        protected override Guid GetUpdateId(SocialAccountUpdateDto dto) => dto.Id;
     }
 }
+
 

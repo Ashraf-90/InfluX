@@ -15,6 +15,65 @@ namespace Infrastructure.Persistence
 
             // SoftDelete for Identity users
             builder.Entity<ApplicationUser>().HasQueryFilter(u => u.Active);
+
+            // =========================
+            // IMPORTANT: Ignore Domain entities in AuthDbContext
+            // =========================
+            builder.Ignore<UserProfile>();
+            builder.Ignore<InfluencerProfile>();
+            builder.Ignore<SocialAccount>();
+            builder.Ignore<Niche>();
+            builder.Ignore<UserNiche>();
+            builder.Ignore<UserKeyWord>();
+            builder.Ignore<VerificationRequest>();
+            builder.Ignore<ServiceListing>();
+            builder.Ignore<ServicePricingOption>();
+            builder.Ignore<InfluencerMedia>();
+            builder.Ignore<InfluencerAsset>();
+
+            // Existing SEO / others (ignore if they exist in your Domain)
+            builder.Ignore<KeyWords>();
+            builder.Ignore<MetaPages>();
+            builder.Ignore<Pixels>();
+
+            // =========================
+            // Seed Default Roles
+            // =========================
+            var influencerRoleId = new Guid("11111111-1111-1111-1111-111111111111");
+            var brandRoleId = new Guid("22222222-2222-2222-2222-222222222222");
+            var agencyRoleId = new Guid("33333333-3333-3333-3333-333333333333");
+            var userRoleId = new Guid("44444444-4444-4444-4444-444444444444");
+
+            builder.Entity<IdentityRole<Guid>>().HasData(
+                new IdentityRole<Guid>
+                {
+                    Id = influencerRoleId,
+                    Name = "Influencer",
+                    NormalizedName = "INFLUENCER",
+                    ConcurrencyStamp = "ROLE-INFLUENCER"
+                },
+                new IdentityRole<Guid>
+                {
+                    Id = brandRoleId,
+                    Name = "Brand",
+                    NormalizedName = "BRAND",
+                    ConcurrencyStamp = "ROLE-BRAND"
+                },
+                new IdentityRole<Guid>
+                {
+                    Id = agencyRoleId,
+                    Name = "Agency",
+                    NormalizedName = "AGENCY",
+                    ConcurrencyStamp = "ROLE-AGENCY"
+                },
+                new IdentityRole<Guid>
+                {
+                    Id = userRoleId,
+                    Name = "User",
+                    NormalizedName = "USER",
+                    ConcurrencyStamp = "ROLE-USER"
+                }
+            );
         }
 
         public override int SaveChanges()

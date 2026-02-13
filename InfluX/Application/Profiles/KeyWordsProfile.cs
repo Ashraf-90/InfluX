@@ -13,7 +13,7 @@ namespace Application.Profiles
     {
         public KeyWordsProfile()
         {
-            CreateMap<KeyWords, KeyWordsDTo>()
+            CreateMap<KeyWords, KeyWordsDto>()
                 .ForMember(d => d.Id, op => op.MapFrom(src => src.Id))
                 .ForMember(d => d.EnKeyword, op => op.MapFrom(src => src.EnKeyword))
                 .ForMember(d => d.ArKeyword, op => op.MapFrom(src => src.ArKeyword))

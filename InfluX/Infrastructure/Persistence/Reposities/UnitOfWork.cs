@@ -1,6 +1,5 @@
 ﻿using Domain.Abstractions;
 using Domain.Entities;
-using Domain.Entities.Domain.Entities;
 
 namespace Infrastructure.Persistence.Reposities
 {

@@ -10,7 +10,8 @@ namespace Application.Profiles
         {
             // Identity
             CreateMap<ApplicationUser, IdentityUserDto>()
-                .ForMember(d => d.PhoneNumber, m => m.MapFrom(s => s.PhoneNumber));
+                .ForMember(d => d.UserId, m => m.MapFrom(s => s.Id))
+                .ForMember(d => d.Id, m => m.MapFrom(s => s.Id)); // CommonDto.Id
 
             // Profiles
             CreateMap<UserProfile, UserProfileDto>().ReverseMap();
@@ -31,9 +32,11 @@ namespace Application.Profiles
 
             CreateMap<UserNiche, UserNicheDto>().ReverseMap();
             CreateMap<UserNiche, UserNicheCreateDto>().ReverseMap();
+            CreateMap<UserNiche, UserNicheUpdateDto>().ReverseMap();
 
             CreateMap<UserKeyWord, UserKeyWordDto>().ReverseMap();
             CreateMap<UserKeyWord, UserKeyWordCreateDto>().ReverseMap();
+            CreateMap<UserKeyWord, UserKeyWordUpdateDto>().ReverseMap();
 
             CreateMap<VerificationRequest, VerificationRequestDto>().ReverseMap();
             CreateMap<VerificationRequest, VerificationRequestCreateDto>().ReverseMap();
@@ -57,3 +60,4 @@ namespace Application.Profiles
         }
     }
 }
+

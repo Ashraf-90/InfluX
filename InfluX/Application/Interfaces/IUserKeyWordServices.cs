@@ -7,5 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface IUserKeyWordServices : ICrudServices<UserKeyWordDto, UserKeyWordCreateDto, UserKeyWordCreateDto> { }
+    public interface IUserKeyWordServices : ICrudServices<UserKeyWordDto, UserKeyWordCreateDto, UserKeyWordUpdateDto> { }
 }
+
+

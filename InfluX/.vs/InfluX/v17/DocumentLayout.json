@@ -3,44 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\interfaces\\verificationrequestservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\interfaces\\verificationrequestservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Migrations\\AuthDb\\20260213141635_InitialAuth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Migrations\\AuthDb\\20260213141635_InitialAuth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\interfaces\\userprofileservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\interfaces\\userprofileservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\interfaces\\usernicheservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\interfaces\\usernicheservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\interfaces\\userkeywordservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\interfaces\\userkeywordservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\interfaces\\socialaccountservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\interfaces\\socialaccountservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\interfaces\\servicepricingoptionservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\interfaces\\servicepricingoptionservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\interfaces\\servicelistingservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\interfaces\\servicelistingservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\interfaces\\pixelsservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\interfaces\\pixelsservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\interfaces\\nicheservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\interfaces\\nicheservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\interfaces\\metapagesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\interfaces\\metapagesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Migrations\\AppDb\\20260213141620_InitialApp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Migrations\\AppDb\\20260213141620_InitialApp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,131 +31,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "VerificationRequestServices.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\VerificationRequestServices.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\VerificationRequestServices.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\VerificationRequestServices.cs",
-              "RelativeToolTip": "Application\\Interfaces\\VerificationRequestServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
+              "Title": "20260213141635_InitialAuth.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Migrations\\AuthDb\\20260213141635_InitialAuth.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\AuthDb\\20260213141635_InitialAuth.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Migrations\\AuthDb\\20260213141635_InitialAuth.cs",
+              "RelativeToolTip": "Infrastructure\\Migrations\\AuthDb\\20260213141635_InitialAuth.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T12:20:11.535Z",
+              "WhenOpened": "2026-02-13T14:16:35.251Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UserProfileServices.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\UserProfileServices.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\UserProfileServices.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\UserProfileServices.cs",
-              "RelativeToolTip": "Application\\Interfaces\\UserProfileServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "20260213141620_InitialApp.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Migrations\\AppDb\\20260213141620_InitialApp.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\AppDb\\20260213141620_InitialApp.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Migrations\\AppDb\\20260213141620_InitialApp.cs",
+              "RelativeToolTip": "Infrastructure\\Migrations\\AppDb\\20260213141620_InitialApp.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T12:20:07.836Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserNicheServices.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\UserNicheServices.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\UserNicheServices.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\UserNicheServices.cs",
-              "RelativeToolTip": "Application\\Interfaces\\UserNicheServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T12:20:05.772Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserKeyWordServices.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\UserKeyWordServices.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\UserKeyWordServices.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\UserKeyWordServices.cs",
-              "RelativeToolTip": "Application\\Interfaces\\UserKeyWordServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T12:20:02.135Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SocialAccountServices.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\SocialAccountServices.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\SocialAccountServices.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\SocialAccountServices.cs",
-              "RelativeToolTip": "Application\\Interfaces\\SocialAccountServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T12:19:55.955Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ServicePricingOptionServices.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\ServicePricingOptionServices.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\ServicePricingOptionServices.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\ServicePricingOptionServices.cs",
-              "RelativeToolTip": "Application\\Interfaces\\ServicePricingOptionServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T12:19:53.027Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ServiceListingServices.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\ServiceListingServices.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\ServiceListingServices.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\ServiceListingServices.cs",
-              "RelativeToolTip": "Application\\Interfaces\\ServiceListingServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T12:19:51.221Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PixelsServices.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\PixelsServices.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\PixelsServices.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\PixelsServices.cs",
-              "RelativeToolTip": "Application\\Interfaces\\PixelsServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T12:19:49.395Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "NicheServices.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\NicheServices.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\NicheServices.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\NicheServices.cs",
-              "RelativeToolTip": "Application\\Interfaces\\NicheServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T12:19:40.483Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MetaPagesServices.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\MetaPagesServices.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\MetaPagesServices.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\MetaPagesServices.cs",
-              "RelativeToolTip": "Application\\Interfaces\\MetaPagesServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-13T12:19:38.893Z",
+              "WhenOpened": "2026-02-13T14:16:20.842Z",
               "EditorCaption": ""
             }
           ]

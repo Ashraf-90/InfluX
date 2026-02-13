@@ -1,6 +1,4 @@
 ﻿using Domain.Entities;
-using Domain.Entities;
-using Domain.Entities.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,12 +8,11 @@ namespace Infrastructure.Persistence
     {
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) { }
 
-        // Existing
+        // Domain Tables
         public DbSet<MetaPages> MetaPages { get; set; }
         public DbSet<KeyWords> KeyWords { get; set; }
         public DbSet<Pixels> Pixels { get; set; }
 
-        // ERD
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<InfluencerProfile> InfluencerProfiles { get; set; }
         public DbSet<SocialAccount> SocialAccounts { get; set; }
@@ -36,7 +33,14 @@ namespace Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-            // Relationships
+            // =========================
+            // IMPORTANT:
+            // Use Identity users table, but DO NOT create it from AppDBContext migrations
+            // =========================
+            modelBuilder.Entity<ApplicationUser>()
+                .ToTable("AspNetUsers", t => t.ExcludeFromMigrations());
+
+            // Relationships to ApplicationUser (AspNetUsers)
             modelBuilder.Entity<UserProfile>()
                 .HasOne(x => x.User)
                 .WithOne(x => x.UserProfile)
@@ -99,24 +103,13 @@ namespace Infrastructure.Persistence
                 .WithMany(x => x.InfluencerAssets)
                 .HasForeignKey(x => x.InfluencerId);
 
-            // Decimal precision
-            modelBuilder.Entity<SocialAccount>()
-                .Property(x => x.EngagementRate)
-                .HasPrecision(10, 2);
+            // Decimal precision (هذا يزيل warnings truncation)
+            modelBuilder.Entity<SocialAccount>().Property(x => x.EngagementRate).HasPrecision(10, 2);
+            modelBuilder.Entity<ServiceListing>().Property(x => x.BasePrice).HasPrecision(18, 2);
+            modelBuilder.Entity<ServicePricingOption>().Property(x => x.Price).HasPrecision(18, 2);
+            modelBuilder.Entity<InfluencerAsset>().Property(x => x.RetailPrice).HasPrecision(18, 2);
 
-            modelBuilder.Entity<ServiceListing>()
-                .Property(x => x.BasePrice)
-                .HasPrecision(18, 2);
-
-            modelBuilder.Entity<ServicePricingOption>()
-                .Property(x => x.Price)
-                .HasPrecision(18, 2);
-
-            modelBuilder.Entity<InfluencerAsset>()
-                .Property(x => x.RetailPrice)
-                .HasPrecision(18, 2);
-
-            // Global SoftDelete filter for Common entities
+            // SoftDelete filter for Common entities
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
                 if (entityType.ClrType.IsSubclassOf(typeof(Common)))
@@ -166,3 +159,5 @@ namespace Infrastructure.Persistence
         }
     }
 }
+
+

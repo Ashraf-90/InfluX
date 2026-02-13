@@ -7,5 +7,6 @@ using Application.DTOs;
 
 namespace Application.Interfaces
 {
-    public interface IUserNicheServices : ICrudServices<UserNicheDto, UserNicheCreateDto, UserNicheCreateDto> { }
+    public interface IUserNicheServices : ICrudServices<UserNicheDto, UserNicheCreateDto, UserNicheUpdateDto> { }
 }
+

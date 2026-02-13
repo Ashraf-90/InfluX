@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Application.DTOs;
+using AutoMapper;
+using Domain.Abstractions;
+using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Application.DTOs;
-using AutoMapper;
-using Domain.Abstractions;
-using Domain.Entities;
 
 namespace Application.Interfaces
 {
@@ -15,8 +15,8 @@ namespace Application.Interfaces
         public ServiceListingServices(IUnitOfWork uow, IMapper mapper)
             : base(uow, mapper, uow.ServiceListings) { }
 
-        protected override int EFId(ServiceListing entity) => entity.Id;
-        protected override int GetUpdateId(ServiceListingUpdateDto dto) => dto.Id;
+        protected override Guid GetUpdateId(ServiceListingUpdateDto dto) => dto.Id;
     }
 }
+
 

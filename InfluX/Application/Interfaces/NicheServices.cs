@@ -15,8 +15,8 @@ namespace Application.Interfaces
         public NicheServices(IUnitOfWork uow, IMapper mapper)
             : base(uow, mapper, uow.Niches) { }
 
-        protected override int EFId(Niche entity) => entity.Id;
-        protected override int GetUpdateId(NicheUpdateDto dto) => dto.Id;
+        protected override Guid GetUpdateId(NicheUpdateDto dto) => dto.Id;
     }
 }
+
 

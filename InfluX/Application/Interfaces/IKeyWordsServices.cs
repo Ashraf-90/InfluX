@@ -9,10 +9,14 @@ namespace Application.Interfaces
 {
     public interface IKeyWordsServices
     {
-        Task<IEnumerable<KeyWordsDTo>> GetAllKeyWords();
-        Task<KeyWordsDTo?> GetMetaPageById(int id);
-        Task<bool> AddNewKeyWords(KeyWordsDTo createkeyWordsDTo);
-        Task<bool> UpdateKeyWords(KeyWordsDTo updatekeyWordsDTo);
-        Task<bool> DeleteKeyWordsAsync(int id);
+        Task<IEnumerable<KeyWordsDto>> GetAllKeyWords();
+        Task<KeyWordsDto?> GetById(Guid id);
+
+        Task<bool> AddNewKeyWords(KeyWordsCreateDto dto);
+        Task<bool> UpdateKeyWords(KeyWordsUpdateDto dto);
+
+        // SoftDelete => Active = false
+        Task<bool> DeleteKeyWordsAsync(Guid id);
     }
 }
+

@@ -15,8 +15,8 @@ namespace Application.Interfaces
         public InfluencerProfileServices(IUnitOfWork uow, IMapper mapper)
             : base(uow, mapper, uow.InfluencerProfiles) { }
 
-        protected override int EFId(InfluencerProfile entity) => entity.Id;
-        protected override int GetUpdateId(InfluencerProfileUpdateDto dto) => dto.Id;
+        protected override Guid GetUpdateId(InfluencerProfileUpdateDto dto) => dto.Id;
     }
 }
+
 
