@@ -8,6 +8,8 @@ namespace Application.DTOs
 {
     public class CommonDto
     {
+        public Guid Id { get; set; }
+
         public bool Active { get; set; }
         public bool IsAvilable { get; set; }
         public DateTime CreateDate { get; set; }
@@ -20,4 +22,6 @@ namespace Application.DTOs
         public bool IsAvilable { get; set; } = true;
     }
 }
+
+
 

@@ -8,17 +8,28 @@ namespace Application.DTOs
 {
     public class UserKeyWordDto : CommonDto
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public int KeyWordsId { get; set; }
+        public Guid UserId { get; set; }
+        public Guid KeyWordsId { get; set; }
     }
 
     public class UserKeyWordCreateDto : CommonCreateDto
     {
-        public int UserId { get; set; }
-        public int KeyWordsId { get; set; }
+        public Guid UserId { get; set; }
+        public Guid KeyWordsId { get; set; }
     }
 
-    public class UserKeyWordDeleteDto { public int Id { get; set; } }
+    // Pivot عادة لا يحتاج Update، لكن إذا أردت:
+    public class UserKeyWordUpdateDto : CommonCreateDto
+    {
+        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+        public Guid KeyWordsId { get; set; }
+    }
+
+    public class UserKeyWordDeleteDto
+    {
+        public Guid Id { get; set; }
+    }
 }
+
 

@@ -4,12 +4,13 @@ using Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace Application.Interfaces
 {
     public abstract class BaseCrudServices<TEntity, TDto, TCreateDto, TUpdateDto>
         : ICrudServices<TDto, TCreateDto, TUpdateDto>
-        where TEntity : Common, IHasId, class
+        where TEntity : Common
     {
         protected readonly IUnitOfWork unitOfWork;
         protected readonly IMapper mapper;
@@ -28,10 +29,10 @@ namespace Application.Interfaces
             return mapper.Map<IEnumerable<TDto>>(data);
         }
 
-        public async Task<TDto?> GetById(int id)
+        public async Task<TDto?> GetById(Guid id)
         {
             var list = await repo.GetAllAsyncWitFillter(
-                new List<System.Linq.Expressions.Expression<System.Func<TEntity, bool>>> { x => x.Id == id });
+                new List<Expression<Func<TEntity, bool>>> { x => x.Id == id });
 
             var entity = list.FirstOrDefault();
             return entity == null ? default : mapper.Map<TDto>(entity);
@@ -50,7 +51,7 @@ namespace Application.Interfaces
             var entityId = GetUpdateId(dto);
 
             var list = await repo.GetAllAsyncWitFillter(
-                new List<System.Linq.Expressions.Expression<System.Func<TEntity, bool>>> { x => x.Id == entityId });
+                new List<Expression<Func<TEntity, bool>>> { x => x.Id == entityId });
 
             var entity = list.FirstOrDefault();
             if (entity == null) return false;
@@ -61,10 +62,10 @@ namespace Application.Interfaces
             return ok;
         }
 
-        public async Task<bool> SoftDelete(int id)
+        public async Task<bool> SoftDelete(Guid id)
         {
             var list = await repo.GetAllAsyncWitFillter(
-                new List<System.Linq.Expressions.Expression<System.Func<TEntity, bool>>> { x => x.Id == id });
+                new List<Expression<Func<TEntity, bool>>> { x => x.Id == id });
 
             var entity = list.FirstOrDefault();
             if (entity == null) return false;
@@ -75,7 +76,7 @@ namespace Application.Interfaces
             return ok;
         }
 
-        // Helpers
-        protected abstract int GetUpdateId(TUpdateDto dto);
+        protected abstract Guid GetUpdateId(TUpdateDto dto);
     }
 }
+

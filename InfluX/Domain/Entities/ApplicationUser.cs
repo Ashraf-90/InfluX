@@ -9,7 +9,7 @@ namespace Domain.Entities
 {
     public class ApplicationUser : IdentityUser<Guid>
     {
-        // نفس خصائص Common (لكن بدون Id لأنه موجود أصلاً في IdentityUser<Guid>)
+        // Common-like fields (IdentityUser<Guid> already has Id)
         public bool Active { get; set; } = true;
         public bool IsAvilable { get; set; } = true;
         public DateTime CreateDate { get; set; }
@@ -30,5 +30,6 @@ namespace Domain.Entities
         public ICollection<InfluencerAsset> InfluencerAssets { get; set; } = new List<InfluencerAsset>();
     }
 }
+
 
 

@@ -11,29 +11,27 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 
-// DbContext (Identity + App Entities)
+// App DB (Domain entities)
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CONSTR")));
 
-// Identity (int keys)
-builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
+// Auth DB (Identity)
+builder.Services.AddDbContext<AuthDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CONSTR")));
+
+// Identity GUID
+builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
 {
     options.Password.RequireDigit = true;
     options.Password.RequiredLength = 6;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireLowercase = false;
-
     options.User.RequireUniqueEmail = true;
-
-    // lockout optional
-    options.Lockout.AllowedForNewUsers = true;
-    options.Lockout.MaxFailedAccessAttempts = 5;
 })
-.AddEntityFrameworkStores<AppDBContext>()
+.AddEntityFrameworkStores<AuthDbContext>()
 .AddDefaultTokenProviders();
 
-// Cookie paths (MVC)
 builder.Services.ConfigureApplicationCookie(opt =>
 {
     opt.LoginPath = "/Auth/Login";
@@ -41,17 +39,18 @@ builder.Services.ConfigureApplicationCookie(opt =>
     opt.AccessDeniedPath = "/Auth/AccessDenied";
 });
 
-// Your UoW + Services
+// UoW uses AppDBContext only
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+// Existing services
 builder.Services.AddScoped<IMetaPagesServices, MetaPagesServices>();
 builder.Services.AddScoped<IKeyWordsServices, KeyWordsServices>();
 builder.Services.AddScoped<IPixelsServices, PixelsServices>();
 
-// Identity-aware user service
+// Identity service
 builder.Services.AddScoped<IIdentityUserServices, IdentityUserServices>();
 
-// Generic CRUD for Common entities + specific services (below you will add)
+// CRUD services
 builder.Services.AddScoped<INicheServices, NicheServices>();
 builder.Services.AddScoped<IUserNicheServices, UserNicheServices>();
 builder.Services.AddScoped<IUserKeyWordServices, UserKeyWordServices>();

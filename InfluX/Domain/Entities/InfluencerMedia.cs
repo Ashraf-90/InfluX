@@ -8,8 +8,7 @@ namespace Domain.Entities
 {
     public class InfluencerMedia : Common
     {
-
-        public int InfluencerId { get; set; }
+        public Guid InfluencerId { get; set; }
         public ApplicationUser Influencer { get; set; } = null!;
 
         public MediaType Type { get; set; }
@@ -19,4 +18,5 @@ namespace Domain.Entities
         public string? Caption { get; set; }
     }
 }
+
 

@@ -1,10 +1,12 @@
 ﻿using Domain.Entities;
+using Domain.Entities;
+using Domain.Entities.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence
 {
-    public class AppDBContext : IdentityDbContext<ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole<int>, int>
+    public class AppDBContext : DbContext
     {
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) { }
 
@@ -34,10 +36,7 @@ namespace Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-            // -------- Identity User SoftDelete Filter --------
-            modelBuilder.Entity<ApplicationUser>().HasQueryFilter(x => x.Active);
-
-            // -------- Relationships --------
+            // Relationships
             modelBuilder.Entity<UserProfile>()
                 .HasOne(x => x.User)
                 .WithOne(x => x.UserProfile)
@@ -100,7 +99,7 @@ namespace Infrastructure.Persistence
                 .WithMany(x => x.InfluencerAssets)
                 .HasForeignKey(x => x.InfluencerId);
 
-            // -------- Decimal Precision --------
+            // Decimal precision
             modelBuilder.Entity<SocialAccount>()
                 .Property(x => x.EngagementRate)
                 .HasPrecision(10, 2);
@@ -117,13 +116,14 @@ namespace Infrastructure.Persistence
                 .Property(x => x.RetailPrice)
                 .HasPrecision(18, 2);
 
-            // -------- Global SoftDelete Filter for Common --------
+            // Global SoftDelete filter for Common entities
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
                 if (entityType.ClrType.IsSubclassOf(typeof(Common)))
                 {
                     var method = typeof(AppDBContext)
-                        .GetMethod(nameof(SetSoftDeleteFilter), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+                        .GetMethod(nameof(SetSoftDeleteFilter),
+                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
                         ?.MakeGenericMethod(entityType.ClrType);
 
                     method?.Invoke(null, new object[] { modelBuilder });
@@ -138,38 +138,29 @@ namespace Infrastructure.Persistence
 
         public override int SaveChanges()
         {
-            ApplyDates();
+            ApplyCommonDates();
             return base.SaveChanges();
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            ApplyDates();
+            ApplyCommonDates();
             return base.SaveChangesAsync(cancellationToken);
         }
 
-        private void ApplyDates()
+        private void ApplyCommonDates()
         {
             var now = DateTime.UtcNow;
 
             foreach (var entry in ChangeTracker.Entries())
             {
-                // Common entities
-                if (entry.Entity is Common common && (entry.State == EntityState.Added || entry.State == EntityState.Modified))
+                if (entry.Entity is Common common &&
+                    (entry.State == EntityState.Added || entry.State == EntityState.Modified))
                 {
                     if (entry.State == EntityState.Added)
                         common.CreateDate = now;
 
                     common.UpdateDate = now;
-                }
-
-                // Identity user dates
-                if (entry.Entity is ApplicationUser user && (entry.State == EntityState.Added || entry.State == EntityState.Modified))
-                {
-                    if (entry.State == EntityState.Added)
-                        user.CreateDate = now;
-
-                    user.UpdateDate = now;
                 }
             }
         }

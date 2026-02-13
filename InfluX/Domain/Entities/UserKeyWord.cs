@@ -8,12 +8,11 @@ namespace Domain.Entities
 {
     public class UserKeyWord : Common
     {
-        public int Id { get; set; }
-
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
 
-        public int KeyWordsId { get; set; }
+        public Guid KeyWordsId { get; set; }
         public KeyWords KeyWords { get; set; } = null!;
     }
 }
+

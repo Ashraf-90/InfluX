@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,7 @@ namespace Domain.Entities
 {
     public class ServicePricingOption : Common
     {
-
-        public int ServiceListingId { get; set; }
+        public Guid ServiceListingId { get; set; }
         public ServiceListing ServiceListing { get; set; } = null!;
 
         public string Key { get; set; } = null!;
@@ -17,4 +17,5 @@ namespace Domain.Entities
         public string? Notes { get; set; }
     }
 }
+
 

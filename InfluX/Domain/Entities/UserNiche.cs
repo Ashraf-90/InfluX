@@ -8,11 +8,11 @@ namespace Domain.Entities
 {
     public class UserNiche : Common
     {
-
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
 
-        public int NicheId { get; set; }
+        public Guid NicheId { get; set; }
         public Niche Niche { get; set; } = null!;
     }
 }
+

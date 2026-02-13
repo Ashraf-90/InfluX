@@ -9,27 +9,30 @@ namespace Application.DTOs
     // READ
     public class IdentityUserDto : CommonDto
     {
-        public int Id { get; set; }
+        public Guid UserId { get; set; } // Identity Id
         public string AppRole { get; set; } = "User";
+
         public string UserName { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string? PhoneNumber { get; set; }
     }
 
-    // CREATE (Register)
+    // REGISTER
     public class IdentityUserCreateDto : CommonCreateDto
     {
         public string AppRole { get; set; } = "User";
+
         public string UserName { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string? PhoneNumber { get; set; }
+
         public string Password { get; set; } = null!;
     }
 
-    // UPDATE (Profile update)
+    // UPDATE
     public class IdentityUserUpdateDto : CommonCreateDto
     {
-        public int Id { get; set; }
+        public Guid UserId { get; set; }
         public string AppRole { get; set; } = "User";
         public string? PhoneNumber { get; set; }
     }
@@ -37,7 +40,7 @@ namespace Application.DTOs
     // SOFT DELETE
     public class IdentityUserDeleteDto
     {
-        public int Id { get; set; }
+        public Guid UserId { get; set; }
     }
 
     // LOGIN
@@ -48,4 +51,5 @@ namespace Application.DTOs
         public bool RememberMe { get; set; } = false;
     }
 }
+
 

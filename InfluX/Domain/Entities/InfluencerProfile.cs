@@ -8,8 +8,7 @@ namespace Domain.Entities
 {
     public class InfluencerProfile : Common
     {
-
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
 
         public string Username { get; set; } = null!;
@@ -21,3 +20,4 @@ namespace Domain.Entities
         public string? PublicSlug { get; set; }
     }
 }
+

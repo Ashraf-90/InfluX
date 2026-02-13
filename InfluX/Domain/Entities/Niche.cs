@@ -15,3 +15,4 @@ namespace Domain.Entities
         public ICollection<UserNiche> UserNiches { get; set; } = new List<UserNiche>();
     }
 }
+

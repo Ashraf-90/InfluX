@@ -8,8 +8,8 @@ namespace Application.DTOs
 {
     public class UserProfileDto : CommonDto
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
+
         public string? FullName { get; set; }
         public string? Country { get; set; }
         public string? City { get; set; }
@@ -19,7 +19,8 @@ namespace Application.DTOs
 
     public class UserProfileCreateDto : CommonCreateDto
     {
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
+
         public string? FullName { get; set; }
         public string? Country { get; set; }
         public string? City { get; set; }
@@ -29,7 +30,8 @@ namespace Application.DTOs
 
     public class UserProfileUpdateDto : CommonCreateDto
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+
         public string? FullName { get; set; }
         public string? Country { get; set; }
         public string? City { get; set; }
@@ -37,6 +39,10 @@ namespace Application.DTOs
         public string? AvatarUrl { get; set; }
     }
 
-    public class UserProfileDeleteDto { public int Id { get; set; } }
+    public class UserProfileDeleteDto
+    {
+        public Guid Id { get; set; }
+    }
 }
+
 

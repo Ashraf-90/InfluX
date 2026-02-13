@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class KeyWords 
+    public class KeyWords : Common
     {
-        public int Id { get; set; }
         public string? EnKeyword { get; set; }
         public string? ArKeyword { get; set; }
+
+        public ICollection<UserKeyWord> UserKeyWords { get; set; } = new List<UserKeyWord>();
     }
 }
+

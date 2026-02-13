@@ -8,8 +8,7 @@ namespace Domain.Entities
 {
     public class UserProfile : Common
     {
-
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
 
         public string? FullName { get; set; }
@@ -19,3 +18,4 @@ namespace Domain.Entities
         public string? AvatarUrl { get; set; }
     }
 }
+

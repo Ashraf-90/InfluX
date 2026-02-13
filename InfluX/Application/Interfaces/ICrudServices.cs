@@ -9,9 +9,10 @@ namespace Application.Interfaces
     public interface ICrudServices<TDto, TCreateDto, TUpdateDto>
     {
         Task<IEnumerable<TDto>> GetAll();
-        Task<TDto?> GetById(int id);
+        Task<TDto?> GetById(Guid id);
         Task<bool> Create(TCreateDto dto);
         Task<bool> Update(TUpdateDto dto);
-        Task<bool> SoftDelete(int id);
+        Task<bool> SoftDelete(Guid id);
     }
 }
+

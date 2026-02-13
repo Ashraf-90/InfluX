@@ -8,7 +8,6 @@ namespace Application.DTOs
 {
     public class NicheDto : CommonDto
     {
-        public int Id { get; set; }
         public string NameAr { get; set; } = null!;
         public string NameEn { get; set; } = null!;
         public string? Icon { get; set; }
@@ -23,12 +22,17 @@ namespace Application.DTOs
 
     public class NicheUpdateDto : CommonCreateDto
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+
         public string NameAr { get; set; } = null!;
         public string NameEn { get; set; } = null!;
         public string? Icon { get; set; }
     }
 
-    public class NicheDeleteDto { public int Id { get; set; } }
+    public class NicheDeleteDto
+    {
+        public Guid Id { get; set; }
+    }
 }
+
 

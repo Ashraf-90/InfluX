@@ -8,7 +8,7 @@ namespace Domain.Entities
 {
     public class InfluencerAsset : Common
     {
-        public int InfluencerId { get; set; }
+        public Guid InfluencerId { get; set; }
         public ApplicationUser Influencer { get; set; } = null!;
 
         public string Name { get; set; } = null!;
@@ -20,4 +20,5 @@ namespace Domain.Entities
         public decimal RetailPrice { get; set; }
     }
 }
+
 

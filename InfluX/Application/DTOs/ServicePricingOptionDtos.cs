@@ -8,8 +8,8 @@ namespace Application.DTOs
 {
     public class ServicePricingOptionDto : CommonDto
     {
-        public int Id { get; set; }
-        public int ServiceListingId { get; set; }
+        public Guid ServiceListingId { get; set; }
+
         public string Key { get; set; } = null!;
         public decimal Price { get; set; }
         public string? Notes { get; set; }
@@ -17,7 +17,8 @@ namespace Application.DTOs
 
     public class ServicePricingOptionCreateDto : CommonCreateDto
     {
-        public int ServiceListingId { get; set; }
+        public Guid ServiceListingId { get; set; }
+
         public string Key { get; set; } = null!;
         public decimal Price { get; set; }
         public string? Notes { get; set; }
@@ -25,12 +26,19 @@ namespace Application.DTOs
 
     public class ServicePricingOptionUpdateDto : CommonCreateDto
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+
+        public Guid ServiceListingId { get; set; }
+
         public string Key { get; set; } = null!;
         public decimal Price { get; set; }
         public string? Notes { get; set; }
     }
 
-    public class ServicePricingOptionDeleteDto { public int Id { get; set; } }
+    public class ServicePricingOptionDeleteDto
+    {
+        public Guid Id { get; set; }
+    }
 }
+
 

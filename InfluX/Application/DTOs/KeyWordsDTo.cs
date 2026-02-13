@@ -7,10 +7,29 @@ using System.Threading.Tasks;
 
 namespace Application.DTOs
 {
-    public class KeyWordsDTo
+    public class KeyWordsDto : CommonDto
     {
-        public int Id { get; set; }
         public string? EnKeyword { get; set; }
         public string? ArKeyword { get; set; }
     }
+
+    public class KeyWordsCreateDto : CommonCreateDto
+    {
+        public string? EnKeyword { get; set; }
+        public string? ArKeyword { get; set; }
+    }
+
+    public class KeyWordsUpdateDto : CommonCreateDto
+    {
+        public Guid Id { get; set; }
+
+        public string? EnKeyword { get; set; }
+        public string? ArKeyword { get; set; }
+    }
+
+    public class KeyWordsDeleteDto
+    {
+        public Guid Id { get; set; }
+    }
 }
+

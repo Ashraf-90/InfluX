@@ -8,17 +8,28 @@ namespace Application.DTOs
 {
     public class UserNicheDto : CommonDto
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public int NicheId { get; set; }
+        public Guid UserId { get; set; }
+        public Guid NicheId { get; set; }
     }
 
     public class UserNicheCreateDto : CommonCreateDto
     {
-        public int UserId { get; set; }
-        public int NicheId { get; set; }
+        public Guid UserId { get; set; }
+        public Guid NicheId { get; set; }
     }
 
-    public class UserNicheDeleteDto { public int Id { get; set; } }
+    // Pivot عادة لا يحتاج Update، لكن إذا أردت:
+    public class UserNicheUpdateDto : CommonCreateDto
+    {
+        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+        public Guid NicheId { get; set; }
+    }
+
+    public class UserNicheDeleteDto
+    {
+        public Guid Id { get; set; }
+    }
 }
+
 

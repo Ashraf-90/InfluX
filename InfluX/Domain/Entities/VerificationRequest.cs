@@ -8,8 +8,7 @@ namespace Domain.Entities
 {
     public class VerificationRequest : Common
     {
-
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
 
         public VerificationStatus Status { get; set; } = VerificationStatus.Pending;
@@ -19,4 +18,5 @@ namespace Domain.Entities
         public string? Notes { get; set; }
     }
 }
+
 
