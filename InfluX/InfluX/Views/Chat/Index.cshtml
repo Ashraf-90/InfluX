@@ -1,0 +1,140 @@
+﻿@using System.Security.Claims
+@{
+    ViewData["Title"] = "Chat";
+
+    // تجلب معلوماتي عند الإتصال 
+    var myUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+}
+
+<h1>Chat </h1>
+<p>Logend In as : <strong>@User.Identity?.Name</strong></p>
+<p>Your user Id : <code>@myUserId</code></p>
+
+<hr />
+
+<h2>Public Chat :</h2>
+<div id="publicbox" style="border:1px solid #000; height:300px; padding:10px" >
+
+</div>
+
+<div style="display:flex; gap:8px; margin-top:8px;" >
+    <input  id="publicinput" style="flex:1; padding:8px; "/>
+    <button id="bublicsend" onclick="Send()">Send</button>
+</div>
+
+<hr /><hr />
+@* --------------------------------------------------------------------------------------------- *@
+<h1>Privet Chat </h1>
+
+<div id="Privet_box" style="border:1px solid #000; height:300px; padding:10px ; " >
+
+</div>
+
+<div style="display:flex; gap:8px; margin-top:8px;">
+    <input id="Privet_input_UserId" style="flex:1; padding:8px; " />
+    <input type="hidden" id="Privet_input_MyName" value="@User.Identity?.Name" />
+
+
+    <input id="Privet_input" style="flex:2; padding:8px; " />
+    <button id="Privet_send" onclick="SendPrivet()">Send</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
+
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+    .withUrl("/ChatHub")
+    .withAutomaticReconnect()
+    .build();
+
+
+
+    async function start (){
+         try{
+             await connection.start();
+         }
+         catch(e){
+             console.log(e)
+         }
+     }
+
+
+
+    start ();
+</script>
+
+ @* ============= Send To All ============= *@
+<script>
+    var publicbox = document.getElementById('publicbox')
+
+    
+    // تجهيز للإستقبال الرسالة
+    connection.on('RecivePublic' , (sender , message)=>{
+        console.log(sender , message);
+        publicbox.innerHTML +=`<p>${sender}: ${message}</p>`
+    })
+
+
+     // تجهيز لإرسال الرسالة
+    async function  Send(){
+         var publicinput = document.getElementById('publicinput').value;
+         await connection.invoke('SendToAll' , publicinput);
+    }
+</script>
+
+
+
+@* ============= Send To Privet ============= *@
+<script>
+    var Privet_box = document.getElementById('Privet_box');
+
+
+    // تجهيز للإستقبال الرسالة
+    connection.on('RecivePrivet' , (sender , message)=>{
+        console.log(sender , message);
+        Privet_box.innerHTML +=`<p>${sender}: ${message}</p>`
+    })
+
+
+
+     // تجهيز لإرسال الرسالة 
+    async function  SendPrivet(){
+
+
+
+         var Privet_input = document.getElementById('Privet_input').value;
+         var Privet_input_UserId =  document.getElementById('Privet_input_UserId').value;
+         var Privet_input_MyName =  document.getElementById('Privet_input_MyName').value;
+
+          Privet_box.innerHTML +=`<p style="text-align:right">${Privet_input_MyName}: ${Privet_input}</p>`
+
+         await connection.invoke('SendPrivet' ,Privet_input_UserId, Privet_input);
+
+
+
+
+        
+    }
+
+</script>

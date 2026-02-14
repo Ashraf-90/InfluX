@@ -3,36 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\influx\\controllers\\api\\userapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|solutionrelative:influx\\controllers\\api\\userapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\influx\\controllers\\api\\authapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|solutionrelative:influx\\controllers\\api\\authapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\dtos\\mobileauthdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\dtos\\mobileauthdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\interfaces\\ijwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\interfaces\\ijwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\influx\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|solutionrelative:influx\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\influx\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|solutionrelative:influx\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\influx\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|solutionrelative:influx\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C2626B76-32C5-4B64-B482-E93C54441BA5}|Infrastructure\\Infrastructure.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\infrastructure\\extraservies\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2626B76-32C5-4B64-B482-E93C54441BA5}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\extraservies\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\influx\\views\\chat\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|solutionrelative:influx\\views\\chat\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C2626B76-32C5-4B64-B482-E93C54441BA5}|Infrastructure\\Infrastructure.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\infrastructure\\persistence\\authdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2626B76-32C5-4B64-B482-E93C54441BA5}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\authdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\influx\\controllers\\api\\influencerprofileapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|solutionrelative:influx\\controllers\\api\\influencerprofileapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,106 +38,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "JwtTokenService.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\ExtraServies\\JwtTokenService.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\ExtraServies\\JwtTokenService.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\ExtraServies\\JwtTokenService.cs",
-              "RelativeToolTip": "Infrastructure\\ExtraServies\\JwtTokenService.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAYwB4AAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-14T11:20:13.316Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AuthDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Persistence\\AuthDbContext.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\AuthDbContext.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Persistence\\AuthDbContext.cs",
-              "RelativeToolTip": "Infrastructure\\Persistence\\AuthDbContext.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAYwDIAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-14T10:27:19.727Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserApiController.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Controllers\\Api\\UserApiController.cs",
-              "RelativeDocumentMoniker": "InfluX\\Controllers\\Api\\UserApiController.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Controllers\\Api\\UserApiController.cs",
-              "RelativeToolTip": "InfluX\\Controllers\\Api\\UserApiController.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAQwKIAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-14T09:49:07.804Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AuthApiController.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Controllers\\Api\\AuthApiController.cs",
-              "RelativeDocumentMoniker": "InfluX\\Controllers\\Api\\AuthApiController.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Controllers\\Api\\AuthApiController.cs",
-              "RelativeToolTip": "InfluX\\Controllers\\Api\\AuthApiController.cs",
-              "ViewState": "AgIAAK8AAAAAAAAAAAAmwMIAAAAJAAAAAAAAAA==",
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "InfluX\\Hubs\\ChatHub.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "InfluX\\Hubs\\ChatHub.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-14T09:48:39.801Z",
+              "WhenOpened": "2026-02-14T13:11:28.052Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MobileAuthDtos.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\DTOs\\MobileAuthDtos.cs",
-              "RelativeDocumentMoniker": "Application\\DTOs\\MobileAuthDtos.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\DTOs\\MobileAuthDtos.cs",
-              "RelativeToolTip": "Application\\DTOs\\MobileAuthDtos.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAQwGAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-14T09:47:42.037Z",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Views\\Chat\\Index.cshtml",
+              "RelativeDocumentMoniker": "InfluX\\Views\\Chat\\Index.cshtml",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Views\\Chat\\Index.cshtml",
+              "RelativeToolTip": "InfluX\\Views\\Chat\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-14T13:10:01.012Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IJwtTokenService.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\IJwtTokenService.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\IJwtTokenService.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\Interfaces\\IJwtTokenService.cs",
-              "RelativeToolTip": "Application\\Interfaces\\IJwtTokenService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-14T09:46:05.787Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Program.cs",
               "RelativeDocumentMoniker": "InfluX\\Program.cs",
               "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Program.cs",
               "RelativeToolTip": "InfluX\\Program.cs",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAmwHwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-14T09:42:59.6Z",
+              "WhenOpened": "2026-02-14T13:08:26.981Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\appsettings.json",
-              "RelativeDocumentMoniker": "InfluX\\appsettings.json",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\appsettings.json",
-              "RelativeToolTip": "InfluX\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-02-14T09:42:41.235Z",
+              "DocumentIndex": 3,
+              "Title": "InfluencerProfileApiController.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Controllers\\Api\\InfluencerProfileApiController.cs",
+              "RelativeDocumentMoniker": "InfluX\\Controllers\\Api\\InfluencerProfileApiController.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Controllers\\Api\\InfluencerProfileApiController.cs",
+              "RelativeToolTip": "InfluX\\Controllers\\Api\\InfluencerProfileApiController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAYwEIAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-14T12:09:15.823Z",
               "EditorCaption": ""
             }
           ]

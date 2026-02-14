@@ -1,14 +1,15 @@
 using Application.Interfaces;
 using Domain.Abstractions;
 using Domain.Entities;
+using InfluX.Hubs;
+using Infrastructure.ExtraServies;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Reposities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Infrastructure.ExtraServies;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -114,6 +115,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapHub<ChatHub>("/ChatHub");
 
 app.MapControllers();
 
