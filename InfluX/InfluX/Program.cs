@@ -5,6 +5,11 @@ using Infrastructure.Persistence;
 using Infrastructure.Persistence.Reposities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Infrastructure.ExtraServies;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +36,30 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
 })
 .AddEntityFrameworkStores<AuthDbContext>()
 .AddDefaultTokenProviders();
+
+// =======================
+// JWT (For Mobile APIs)
+// =======================
+builder.Services.AddAuthentication()
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+    {
+        var jwt = builder.Configuration.GetSection("Jwt");
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+
+            ValidIssuer = jwt["Issuer"],
+            ValidAudience = jwt["Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt["Key"]!)),
+            ClockSkew = TimeSpan.Zero
+        };
+    });
+
+// JWT service
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 
 builder.Services.ConfigureApplicationCookie(opt =>
 {
@@ -85,6 +114,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllers();
 
 app.MapControllerRoute(
     name: "default",
