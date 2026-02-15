@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
+namespace Application.DTOs
+{
+    public class UserKeyWordsBulkCreateDto
+    {
+        [Required]
+        [MinLength(1, ErrorMessage = "At least one keyWordsId is required.")]
+        public List<Guid> KeyWordsIds { get; set; } = new();
+    }
+}
+
