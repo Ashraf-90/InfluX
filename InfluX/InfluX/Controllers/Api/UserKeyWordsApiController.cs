@@ -33,7 +33,7 @@ namespace InfluX.Controllers.Api
         // GET: api/UserKeyWords/GetMyUserKeyWords
         // يرجع Pivot Id + KeyWordsId (للتحديث/الحذف)
         // =========================================================
-        [HttpGet("GetMyUserKeyWords")]
+        [HttpGet("GetUserKeyWords")]
         public async Task<ActionResult<ApiResponse<object>>> GetMyUserKeyWords()
         {
             var userId = GetUserId();
