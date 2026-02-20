@@ -22,6 +22,9 @@ namespace Application.DTOs
         public int RevisionsCount { get; set; }
 
         public ListingStatus Status { get; set; }
+
+        // NEW
+        public List<ServicePricingOptionDto> PricingOptions { get; set; } = new();
     }
 
     public class ServiceListingCreateDto : CommonCreateDto
