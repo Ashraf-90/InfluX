@@ -1,5 +1,7 @@
-﻿using Domain.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence
@@ -8,7 +10,9 @@ namespace Infrastructure.Persistence
     {
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) { }
 
+        // =========================
         // Domain Tables
+        // =========================
         public DbSet<MetaPages> MetaPages { get; set; }
         public DbSet<KeyWords> KeyWords { get; set; }
         public DbSet<Pixels> Pixels { get; set; }
@@ -29,6 +33,14 @@ namespace Infrastructure.Persistence
         public DbSet<InfluencerMedia> InfluencerMedia { get; set; }
         public DbSet<InfluencerAsset> InfluencerAssets { get; set; }
 
+        // =========================
+        // NEW Tables (Outside green box)
+        // =========================
+        public DbSet<BrandProfile> BrandProfiles { get; set; }
+        public DbSet<AgencyProfile> AgencyProfiles { get; set; }
+        public DbSet<AgencyClient> AgencyClients { get; set; }
+        public DbSet<InfluencerBusiness> InfluencerBusinesses { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -40,7 +52,10 @@ namespace Infrastructure.Persistence
             modelBuilder.Entity<ApplicationUser>()
                 .ToTable("AspNetUsers", t => t.ExcludeFromMigrations());
 
+            // =========================
             // Relationships to ApplicationUser (AspNetUsers)
+            // =========================
+
             modelBuilder.Entity<UserProfile>()
                 .HasOne(x => x.User)
                 .WithOne(x => x.UserProfile)
@@ -103,13 +118,65 @@ namespace Infrastructure.Persistence
                 .WithMany(x => x.InfluencerAssets)
                 .HasForeignKey(x => x.InfluencerId);
 
-            // Decimal precision (هذا يزيل warnings truncation)
+            // =========================
+            // NEW: BrandProfile (1:1)
+            // =========================
+            modelBuilder.Entity<BrandProfile>()
+                .HasOne(x => x.User)
+                .WithOne(x => x.BrandProfile)
+                .HasForeignKey<BrandProfile>(x => x.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // =========================
+            // NEW: AgencyProfile (1:1)
+            // =========================
+            modelBuilder.Entity<AgencyProfile>()
+                .HasOne(x => x.User)
+                .WithOne(x => x.AgencyProfile)
+                .HasForeignKey<AgencyProfile>(x => x.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // =========================
+            // NEW: AgencyClients (AgencyId + BrandId => Users)
+            // =========================
+            modelBuilder.Entity<AgencyClient>()
+                .HasOne(x => x.Agency)
+                .WithMany(x => x.AgencyClientsAsAgency)
+                .HasForeignKey(x => x.AgencyId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AgencyClient>()
+                .HasOne(x => x.Brand)
+                .WithMany(x => x.AgencyClientsAsBrand)
+                .HasForeignKey(x => x.BrandId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // منع تكرار نفس العلاقة Agency+Brand (مع مراعاة SoftDelete)
+            modelBuilder.Entity<AgencyClient>()
+                .HasIndex(x => new { x.AgencyId, x.BrandId })
+                .IsUnique()
+                .HasFilter("[Active] = 1"); // SQL Server
+
+            // =========================
+            // NEW: InfluencerBusiness (1:N)
+            // =========================
+            modelBuilder.Entity<InfluencerBusiness>()
+                .HasOne(x => x.Influencer)
+                .WithMany(x => x.InfluencerBusinesses)
+                .HasForeignKey(x => x.InfluencerId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // =========================
+            // Decimal precision (remove truncation warnings)
+            // =========================
             modelBuilder.Entity<SocialAccount>().Property(x => x.EngagementRate).HasPrecision(10, 2);
             modelBuilder.Entity<ServiceListing>().Property(x => x.BasePrice).HasPrecision(18, 2);
             modelBuilder.Entity<ServicePricingOption>().Property(x => x.Price).HasPrecision(18, 2);
             modelBuilder.Entity<InfluencerAsset>().Property(x => x.RetailPrice).HasPrecision(18, 2);
 
+            // =========================
             // SoftDelete filter for Common entities
+            // =========================
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
                 if (entityType.ClrType.IsSubclassOf(typeof(Common)))
@@ -159,5 +226,3 @@ namespace Infrastructure.Persistence
         }
     }
 }
-
-

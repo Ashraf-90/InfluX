@@ -27,6 +27,11 @@ namespace Infrastructure.Persistence.Reposities
         private IRepository<InfluencerMedia> _InfluencerMedia;
         private IRepository<InfluencerAsset> _InfluencerAssets;
 
+        private IRepository<BrandProfile> _BrandProfiles;
+        private IRepository<AgencyProfile> _AgencyProfiles;
+        private IRepository<AgencyClient> _AgencyClients;
+        private IRepository<InfluencerBusiness> _InfluencerBusinesses;
+
         public UnitOfWork(AppDBContext context)
         {
             _context = context;
@@ -51,6 +56,12 @@ namespace Infrastructure.Persistence.Reposities
 
         public IRepository<InfluencerMedia> InfluencerMedia => _InfluencerMedia ??= new Repository<InfluencerMedia>(_context);
         public IRepository<InfluencerAsset> InfluencerAssets => _InfluencerAssets ??= new Repository<InfluencerAsset>(_context);
+
+
+        public IRepository<BrandProfile> BrandProfiles => _BrandProfiles ??= new Repository<BrandProfile>(_context);
+        public IRepository<AgencyProfile> AgencyProfiles => _AgencyProfiles ??= new Repository<AgencyProfile>(_context);
+        public IRepository<AgencyClient> AgencyClients => _AgencyClients ??= new Repository<AgencyClient>(_context);
+        public IRepository<InfluencerBusiness> InfluencerBusinesses => _InfluencerBusinesses ??= new Repository<InfluencerBusiness>(_context);
 
         public async Task<int> CompleteAsync() => await _context.SaveChangesAsync();
         public async Task<int> SaveChangesAsync() => await _context.SaveChangesAsync();

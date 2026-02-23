@@ -24,6 +24,11 @@ namespace Domain.Abstractions
         IRepository<InfluencerMedia> InfluencerMedia { get; }
         IRepository<InfluencerAsset> InfluencerAssets { get; }
 
+        IRepository<BrandProfile> BrandProfiles { get; }
+        IRepository<AgencyProfile> AgencyProfiles { get; }
+        IRepository<AgencyClient> AgencyClients { get; }
+        IRepository<InfluencerBusiness> InfluencerBusinesses { get; }
+
         Task<int> CompleteAsync();
         Task<int> SaveChangesAsync();
     }

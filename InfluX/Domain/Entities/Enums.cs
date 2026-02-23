@@ -51,5 +51,24 @@ namespace Domain.Entities
         Audio = 4,
         Url = 5
     }
+
+
+    public enum AgencyClientRole
+    {
+        Owner = 1,
+        Manager = 2
+    }
+
+    public enum AgencyClientStatus
+    {
+        Active = 1,
+        Inactive = 2
+    }
+
+    public enum BusinessType
+    {
+        Agency = 1,
+        Company = 2
+    }
 }
 

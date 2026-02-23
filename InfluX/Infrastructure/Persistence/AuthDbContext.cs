@@ -1,4 +1,7 @@
-﻿using Domain.Entities;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -31,10 +34,27 @@ namespace Infrastructure.Persistence
             builder.Ignore<InfluencerMedia>();
             builder.Ignore<InfluencerAsset>();
 
-            // Existing SEO / others (ignore if they exist in your Domain)
             builder.Ignore<KeyWords>();
             builder.Ignore<MetaPages>();
             builder.Ignore<Pixels>();
+
+            // =========================
+            // NEW ENTITIES (must be ignored here)
+            // =========================
+            builder.Ignore<BrandProfile>();
+            builder.Ignore<AgencyProfile>();
+            builder.Ignore<AgencyClient>();
+            builder.Ignore<InfluencerBusiness>();
+
+            // =========================
+            // Also ignore new navigations on ApplicationUser
+            // (so AuthDbContext doesn't try to map relationships)
+            // =========================
+            builder.Entity<ApplicationUser>().Ignore(x => x.BrandProfile);
+            builder.Entity<ApplicationUser>().Ignore(x => x.AgencyProfile);
+            builder.Entity<ApplicationUser>().Ignore(x => x.AgencyClientsAsAgency);
+            builder.Entity<ApplicationUser>().Ignore(x => x.AgencyClientsAsBrand);
+            builder.Entity<ApplicationUser>().Ignore(x => x.InfluencerBusinesses);
 
             // =========================
             // Seed Default Roles

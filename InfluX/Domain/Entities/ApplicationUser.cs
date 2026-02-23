@@ -20,6 +20,9 @@ namespace Domain.Entities
         public UserProfile? UserProfile { get; set; }
         public InfluencerProfile? InfluencerProfile { get; set; }
 
+        public BrandProfile? BrandProfile { get; set; }
+        public AgencyProfile? AgencyProfile { get; set; }
+
         public ICollection<SocialAccount> SocialAccounts { get; set; } = new List<SocialAccount>();
         public ICollection<UserNiche> UserNiches { get; set; } = new List<UserNiche>();
         public ICollection<UserKeyWord> UserKeyWords { get; set; } = new List<UserKeyWord>();
@@ -28,6 +31,13 @@ namespace Domain.Entities
         public ICollection<ServiceListing> ServiceListings { get; set; } = new List<ServiceListing>();
         public ICollection<InfluencerMedia> InfluencerMedia { get; set; } = new List<InfluencerMedia>();
         public ICollection<InfluencerAsset> InfluencerAssets { get; set; } = new List<InfluencerAsset>();
+
+        
+
+        public ICollection<AgencyClient> AgencyClientsAsAgency { get; set; } = new List<AgencyClient>();
+        public ICollection<AgencyClient> AgencyClientsAsBrand { get; set; } = new List<AgencyClient>();
+
+        public ICollection<InfluencerBusiness> InfluencerBusinesses { get; set; } = new List<InfluencerBusiness>();
     }
 }
 

@@ -92,6 +92,10 @@ builder.Services.AddScoped<IServiceListingServices, ServiceListingServices>();
 builder.Services.AddScoped<IServicePricingOptionServices, ServicePricingOptionServices>();
 builder.Services.AddScoped<IInfluencerMediaServices, InfluencerMediaServices>();
 builder.Services.AddScoped<IInfluencerAssetServices, InfluencerAssetServices>();
+builder.Services.AddScoped<IBrandProfileServices, BrandProfileServices>();
+builder.Services.AddScoped<IAgencyProfileServices, AgencyProfileServices>();
+builder.Services.AddScoped<IAgencyClientServices, AgencyClientServices>();
+builder.Services.AddScoped<IInfluencerBusinessServices, InfluencerBusinessServices>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

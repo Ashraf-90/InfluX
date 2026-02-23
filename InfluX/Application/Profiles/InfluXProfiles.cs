@@ -57,6 +57,22 @@ namespace Application.Profiles
             CreateMap<InfluencerAsset, InfluencerAssetDto>().ReverseMap();
             CreateMap<InfluencerAsset, InfluencerAssetCreateDto>().ReverseMap();
             CreateMap<InfluencerAsset, InfluencerAssetUpdateDto>().ReverseMap();
+
+            CreateMap<BrandProfile, BrandProfileDto>().ReverseMap();
+            CreateMap<BrandProfile, BrandProfileCreateDto>().ReverseMap();
+            CreateMap<BrandProfile, BrandProfileUpdateDto>().ReverseMap();
+
+            CreateMap<AgencyProfile, AgencyProfileDto>().ReverseMap();
+            CreateMap<AgencyProfile, AgencyProfileCreateDto>().ReverseMap();
+            CreateMap<AgencyProfile, AgencyProfileUpdateDto>().ReverseMap();
+
+            CreateMap<AgencyClient, AgencyClientDto>().ReverseMap();
+            CreateMap<AgencyClient, AgencyClientCreateDto>().ReverseMap();
+            CreateMap<AgencyClient, AgencyClientUpdateDto>().ReverseMap();
+
+            CreateMap<InfluencerBusiness, InfluencerBusinessDto>().ReverseMap();
+            CreateMap<InfluencerBusiness, InfluencerBusinessCreateDto>().ReverseMap();
+            CreateMap<InfluencerBusiness, InfluencerBusinessUpdateDto>().ReverseMap();
         }
     }
 }
