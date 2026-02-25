@@ -1,13 +1,10 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
-using AutoMapper;
-using Domain.Entities;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 
 namespace InfluX.Controllers.Api
 {
@@ -16,177 +13,100 @@ namespace InfluX.Controllers.Api
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Agency")]
     public class AgencyClientsApiController : ControllerBase
     {
-        private readonly AppDBContext _appDb;
-        private readonly IAgencyClientServices _agencyClients;
-        private readonly IMapper _mapper;
+        private readonly AppDBContext _db;
+        private readonly IAgencyClientServices _svc;
 
-        public AgencyClientsApiController(AppDBContext appDb, IAgencyClientServices agencyClients, IMapper mapper)
+        public AgencyClientsApiController(AppDBContext db, IAgencyClientServices svc)
         {
-            _appDb = appDb;
-            _agencyClients = agencyClients;
-            _mapper = mapper;
+            _db = db;
+            _svc = svc;
         }
 
-        private Guid GetUserId()
+        // GET: api/AgencyClients/GetAll
+        [HttpGet("GetAllAgencyClients")]
+        public async Task<ActionResult<ApiResponse<object>>> GetAll()
         {
-            var idStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return Guid.Parse(idStr!);
-        }
-
-        // =========================================================
-        // GET: api/AgencyClients/GetMyAgencyClients
-        // =========================================================
-        [HttpGet("GetAgencyClients")]
-        public async Task<ActionResult<ApiResponse<object>>> GetMyAgencyClients()
-        {
-            var agencyId = GetUserId();
-
-            var list = await _appDb.AgencyClients
+            var list = await _db.AgencyClients
                 .AsNoTracking()
-                .Where(x => x.AgencyId == agencyId)
                 .OrderByDescending(x => x.CreateDate)
                 .Select(x => new
                 {
                     id = x.Id,
-                    brandId = x.BrandId,
+                    agencyProfileId = x.AgencyProfileId,
+                    brandProfileId = x.BrandProfileId,
                     role = x.Role,
                     status = x.Status
                 })
                 .ToListAsync();
 
-            return Ok(new ApiResponse<object>
-            {
-                Success = true,
-                Message = "Agency clients loaded successfully.",
-                Data = list
-            });
+            return Ok(new ApiResponse<object> { Success = true, Message = "Loaded.", Data = list });
         }
 
-        // =========================================================
-        // POST: api/AgencyClients/CreateAgencyClient
-        // Body: { "brandId": "GUID", "role": 1|2, "status": 1|2 }
-        // =========================================================
+        // POST: api/AgencyClients/Create
         [HttpPost("CreateAgencyClient")]
-        public async Task<ActionResult<ApiResponse<object>>> CreateAgencyClient([FromBody] AgencyClientCreateDto req)
+        public async Task<ActionResult<ApiResponse<object>>> Create([FromBody] AgencyClientCreateDto req)
         {
-            var agencyId = GetUserId();
-            req.AgencyId = agencyId;
+            if (req == null || req.AgencyProfileId == Guid.Empty || req.BrandProfileId == Guid.Empty)
+                return BadRequest(new ApiResponse<object> { Success = false, Message = "agencyProfileId & brandProfileId are required." });
 
-            if (req == null || req.BrandId == Guid.Empty)
-            {
-                return BadRequest(new ApiResponse<object> { Success = false, Message = "brandId is required." });
-            }
-
-            // تأكد أن البراند موجود
-            var brandExists = await _appDb.Set<ApplicationUser>()
-                .AsNoTracking()
-                .AnyAsync(u => u.Id == req.BrandId);
-
-            if (!brandExists)
-            {
-                return BadRequest(new ApiResponse<object> { Success = false, Message = $"Invalid brandId: {req.BrandId}" });
-            }
-
-            // منع التكرار (مع مراعاة SoftDelete: نبحث في IgnoreQueryFilters)
-            var already = await _appDb.AgencyClients
+            // تأكد AgencyProfile موجود
+            var agencyExists = await _db.AgencyProfiles
                 .IgnoreQueryFilters()
                 .AsNoTracking()
-                .AnyAsync(x => x.AgencyId == agencyId && x.BrandId == req.BrandId && x.Active);
+                .AnyAsync(x => x.Id == req.AgencyProfileId);
+
+            if (!agencyExists)
+                return BadRequest(new ApiResponse<object> { Success = false, Message = $"Invalid agencyProfileId: {req.AgencyProfileId}" });
+
+            // تأكد BrandProfile موجود
+            var brandExists = await _db.BrandProfiles
+                .IgnoreQueryFilters()
+                .AsNoTracking()
+                .AnyAsync(x => x.Id == req.BrandProfileId);
+
+            if (!brandExists)
+                return BadRequest(new ApiResponse<object> { Success = false, Message = $"Invalid brandProfileId: {req.BrandProfileId}" });
+
+            // منع duplicate (Active فقط)
+            var already = await _db.AgencyClients
+                .IgnoreQueryFilters()
+                .AsNoTracking()
+                .AnyAsync(x => x.AgencyProfileId == req.AgencyProfileId && x.BrandProfileId == req.BrandProfileId && x.Active);
 
             if (already)
-            {
-                return Conflict(new ApiResponse<object> { Success = false, Message = "This brand is already linked to your agency." });
-            }
+                return Conflict(new ApiResponse<object> { Success = false, Message = "This agency is already linked to this brand." });
 
-            var ok = await _agencyClients.Create(req);
+            var ok = await _svc.Create(req);
             if (!ok)
-            {
-                return BadRequest(new ApiResponse<object> { Success = false, Message = "Failed to create agency client." });
-            }
+                return BadRequest(new ApiResponse<object> { Success = false, Message = "Failed to create." });
 
-            return Ok(new ApiResponse<object> { Success = true, Message = "Agency client created successfully." });
+            return Ok(new ApiResponse<object> { Success = true, Message = "Created successfully." });
         }
 
-        // =========================================================
-        // PUT: api/AgencyClients/UpdateAgencyClient/{id}
-        // =========================================================
+        // PUT: api/AgencyClients/Update/{id}
         [HttpPut("UpdateAgencyClient/{id:guid}")]
-        public async Task<ActionResult<ApiResponse<object>>> UpdateAgencyClient(Guid id, [FromBody] AgencyClientUpdateDto req)
+        public async Task<ActionResult<ApiResponse<object>>> Update(Guid id, [FromBody] AgencyClientUpdateDto req)
         {
-            var agencyId = GetUserId();
-
-            var entity = await _appDb.AgencyClients
-                .IgnoreQueryFilters()
-                .FirstOrDefaultAsync(x => x.Id == id && x.AgencyId == agencyId);
-
-            if (entity == null)
-            {
-                return NotFound(new ApiResponse<object> { Success = false, Message = "Agency client not found." });
-            }
-
-            // تأكد brandId موجود
-            if (req == null || req.BrandId == Guid.Empty)
-            {
-                return BadRequest(new ApiResponse<object> { Success = false, Message = "brandId is required." });
-            }
-
-            var brandExists = await _appDb.Set<ApplicationUser>()
-                .AsNoTracking()
-                .AnyAsync(u => u.Id == req.BrandId);
-
-            if (!brandExists)
-            {
-                return BadRequest(new ApiResponse<object> { Success = false, Message = $"Invalid brandId: {req.BrandId}" });
-            }
-
-            // منع التكرار لو تغير brandId
-            var duplicate = await _appDb.AgencyClients
-                .IgnoreQueryFilters()
-                .AsNoTracking()
-                .AnyAsync(x => x.AgencyId == agencyId && x.BrandId == req.BrandId && x.Id != id && x.Active);
-
-            if (duplicate)
-            {
-                return Conflict(new ApiResponse<object> { Success = false, Message = "This brand is already linked to your agency." });
-            }
+            if (req == null) return BadRequest(new ApiResponse<object> { Success = false, Message = "Invalid body." });
 
             req.Id = id;
-            req.AgencyId = agencyId;
+            var ok = await _svc.Update(req);
 
-            var ok = await _agencyClients.Update(req);
             if (!ok)
-            {
-                return BadRequest(new ApiResponse<object> { Success = false, Message = "Failed to update agency client." });
-            }
+                return BadRequest(new ApiResponse<object> { Success = false, Message = "Failed to update." });
 
-            return Ok(new ApiResponse<object> { Success = true, Message = "Agency client updated successfully." });
+            return Ok(new ApiResponse<object> { Success = true, Message = "Updated successfully." });
         }
 
-        // =========================================================
-        // DELETE: api/AgencyClients/DeleteAgencyClient/{id}
-        // Soft Delete
-        // =========================================================
+        // DELETE: api/AgencyClients/Delete/{id}
         [HttpDelete("DeleteAgencyClient/{id:guid}")]
-        public async Task<ActionResult<ApiResponse<object>>> DeleteAgencyClient(Guid id)
+        public async Task<ActionResult<ApiResponse<object>>> Delete(Guid id)
         {
-            var agencyId = GetUserId();
-
-            var entity = await _appDb.AgencyClients
-                .IgnoreQueryFilters()
-                .FirstOrDefaultAsync(x => x.Id == id && x.AgencyId == agencyId);
-
-            if (entity == null)
-            {
-                return NotFound(new ApiResponse<object> { Success = false, Message = "Agency client not found." });
-            }
-
-            var ok = await _agencyClients.SoftDelete(id);
+            var ok = await _svc.SoftDelete(id);
             if (!ok)
-            {
-                return BadRequest(new ApiResponse<object> { Success = false, Message = "Failed to delete agency client." });
-            }
+                return BadRequest(new ApiResponse<object> { Success = false, Message = "Failed to delete." });
 
-            return Ok(new ApiResponse<object> { Success = true, Message = "Agency client deleted successfully." });
+            return Ok(new ApiResponse<object> { Success = true, Message = "Deleted successfully." });
         }
     }
 }

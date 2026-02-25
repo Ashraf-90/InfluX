@@ -19,5 +19,7 @@ namespace Domain.Entities
         public string? Industry { get; set; }
         public string? Country { get; set; }
         public string? City { get; set; }
+
+        public ICollection<AgencyClient> AgencyClients { get; set; } = new List<AgencyClient>();
     }
 }

@@ -140,20 +140,20 @@ namespace Infrastructure.Persistence
             // NEW: AgencyClients (AgencyId + BrandId => Users)
             // =========================
             modelBuilder.Entity<AgencyClient>()
-                .HasOne(x => x.Agency)
-                .WithMany(x => x.AgencyClientsAsAgency)
-                .HasForeignKey(x => x.AgencyId)
-                .OnDelete(DeleteBehavior.Restrict);
+            .HasOne(x => x.AgencyProfile)
+            .WithMany(x => x.AgencyClients)
+            .HasForeignKey(x => x.AgencyProfileId)
+            .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<AgencyClient>()
-                .HasOne(x => x.Brand)
-                .WithMany(x => x.AgencyClientsAsBrand)
-                .HasForeignKey(x => x.BrandId)
+                .HasOne(x => x.BrandProfile)
+                .WithMany(x => x.AgencyClients)
+                .HasForeignKey(x => x.BrandProfileId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // منع تكرار نفس العلاقة Agency+Brand (مع مراعاة SoftDelete)
+            // منع تكرار نفس العلاقة AgencyProfile + BrandProfile (مع SoftDelete)
             modelBuilder.Entity<AgencyClient>()
-                .HasIndex(x => new { x.AgencyId, x.BrandId })
+                .HasIndex(x => new { x.AgencyProfileId, x.BrandProfileId })
                 .IsUnique()
                 .HasFilter("[Active] = 1"); // SQL Server
 
