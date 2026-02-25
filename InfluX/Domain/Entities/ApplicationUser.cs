@@ -32,10 +32,6 @@ namespace Domain.Entities
         public ICollection<InfluencerMedia> InfluencerMedia { get; set; } = new List<InfluencerMedia>();
         public ICollection<InfluencerAsset> InfluencerAssets { get; set; } = new List<InfluencerAsset>();
 
-        
-
-        public ICollection<AgencyClient> AgencyClientsAsAgency { get; set; } = new List<AgencyClient>();
-        public ICollection<AgencyClient> AgencyClientsAsBrand { get; set; } = new List<AgencyClient>();
 
         public ICollection<InfluencerBusiness> InfluencerBusinesses { get; set; } = new List<InfluencerBusiness>();
     }

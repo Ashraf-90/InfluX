@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Infrastructure.Migrations.AppDb
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20260223191756_AddBrandAgencyBusinessTables")]
-    partial class AddBrandAgencyBusinessTables
+    [Migration("20260225195207_NewDataBaseMigrationAll")]
+    partial class NewDataBaseMigrationAll
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,10 +34,10 @@ namespace Infrastructure.Migrations.AppDb
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("AgencyId")
+                    b.Property<Guid>("AgencyProfileId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BrandId")
+                    b.Property<Guid>("BrandProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateDate")
@@ -57,9 +57,9 @@ namespace Infrastructure.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BrandId");
+                    b.HasIndex("BrandProfileId");
 
-                    b.HasIndex("AgencyId", "BrandId")
+                    b.HasIndex("AgencyProfileId", "BrandProfileId")
                         .IsUnique()
                         .HasFilter("[Active] = 1");
 
@@ -828,21 +828,21 @@ namespace Infrastructure.Migrations.AppDb
 
             modelBuilder.Entity("Domain.Entities.AgencyClient", b =>
                 {
-                    b.HasOne("Domain.Entities.ApplicationUser", "Agency")
-                        .WithMany("AgencyClientsAsAgency")
-                        .HasForeignKey("AgencyId")
+                    b.HasOne("Domain.Entities.AgencyProfile", "AgencyProfile")
+                        .WithMany("AgencyClients")
+                        .HasForeignKey("AgencyProfileId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.ApplicationUser", "Brand")
-                        .WithMany("AgencyClientsAsBrand")
-                        .HasForeignKey("BrandId")
+                    b.HasOne("Domain.Entities.BrandProfile", "BrandProfile")
+                        .WithMany("AgencyClients")
+                        .HasForeignKey("BrandProfileId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Agency");
+                    b.Navigation("AgencyProfile");
 
-                    b.Navigation("Brand");
+                    b.Navigation("BrandProfile");
                 });
 
             modelBuilder.Entity("Domain.Entities.AgencyProfile", b =>
@@ -1004,12 +1004,13 @@ namespace Infrastructure.Migrations.AppDb
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.Entities.AgencyProfile", b =>
+                {
+                    b.Navigation("AgencyClients");
+                });
+
             modelBuilder.Entity("Domain.Entities.ApplicationUser", b =>
                 {
-                    b.Navigation("AgencyClientsAsAgency");
-
-                    b.Navigation("AgencyClientsAsBrand");
-
                     b.Navigation("AgencyProfile");
 
                     b.Navigation("BrandProfile");
@@ -1033,6 +1034,11 @@ namespace Infrastructure.Migrations.AppDb
                     b.Navigation("UserProfile");
 
                     b.Navigation("VerificationRequests");
+                });
+
+            modelBuilder.Entity("Domain.Entities.BrandProfile", b =>
+                {
+                    b.Navigation("AgencyClients");
                 });
 
             modelBuilder.Entity("Domain.Entities.KeyWords", b =>

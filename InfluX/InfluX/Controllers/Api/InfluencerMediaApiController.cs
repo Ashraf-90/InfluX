@@ -12,7 +12,7 @@ namespace InfluX.Controllers.Api
 {
     [ApiController]
     [Route("api/InfluencerMedia")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Influencer")]
     public class InfluencerMediaApiController : ControllerBase
     {
         private readonly AppDBContext _appDb;

@@ -11,7 +11,7 @@ namespace InfluX.Controllers.Api
 {
     [ApiController]
     [Route("api/InfluencerProfile")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Influencer")]
     public class InfluencerProfileApiController : ControllerBase
     {
         private readonly AppDBContext _appDb;

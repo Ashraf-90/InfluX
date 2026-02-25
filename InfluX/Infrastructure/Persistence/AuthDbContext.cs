@@ -52,8 +52,6 @@ namespace Infrastructure.Persistence
             // =========================
             builder.Entity<ApplicationUser>().Ignore(x => x.BrandProfile);
             builder.Entity<ApplicationUser>().Ignore(x => x.AgencyProfile);
-            builder.Entity<ApplicationUser>().Ignore(x => x.AgencyClientsAsAgency);
-            builder.Entity<ApplicationUser>().Ignore(x => x.AgencyClientsAsBrand);
             builder.Entity<ApplicationUser>().Ignore(x => x.InfluencerBusinesses);
 
             // =========================

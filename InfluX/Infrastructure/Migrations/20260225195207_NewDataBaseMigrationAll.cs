@@ -3,14 +3,69 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Infrastructure.Migrations.AppDb
+namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialApp : Migration
+    public partial class NewDataBaseMigrationAll : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AgencyProfiles",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AgencyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Website = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LogoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
+                    IsAvilable = table.Column<bool>(type: "bit", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AgencyProfiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AgencyProfiles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BrandProfiles",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BrandName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Website = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LogoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Industry = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
+                    IsAvilable = table.Column<bool>(type: "bit", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BrandProfiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BrandProfiles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateTable(
                 name: "InfluencerAssets",
                 columns: table => new
@@ -32,6 +87,33 @@ namespace Infrastructure.Migrations.AppDb
                     table.PrimaryKey("PK_InfluencerAssets", x => x.Id);
                     table.ForeignKey(
                         name: "FK_InfluencerAssets_AspNetUsers_InfluencerId",
+                        column: x => x.InfluencerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "InfluencerBusinesses",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    InfluencerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Logo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BusinessType = table.Column<int>(type: "int", nullable: false),
+                    SocialAccountsJson = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
+                    IsAvilable = table.Column<bool>(type: "bit", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InfluencerBusinesses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_InfluencerBusinesses_AspNetUsers_InfluencerId",
                         column: x => x.InfluencerId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -273,6 +355,37 @@ namespace Infrastructure.Migrations.AppDb
                 });
 
             migrationBuilder.CreateTable(
+                name: "AgencyClients",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AgencyProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BrandProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Role = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
+                    IsAvilable = table.Column<bool>(type: "bit", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AgencyClients", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AgencyClients_AgencyProfiles_AgencyProfileId",
+                        column: x => x.AgencyProfileId,
+                        principalTable: "AgencyProfiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AgencyClients_BrandProfiles_BrandProfileId",
+                        column: x => x.BrandProfileId,
+                        principalTable: "BrandProfiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserKeyWords",
                 columns: table => new
                 {
@@ -356,8 +469,37 @@ namespace Infrastructure.Migrations.AppDb
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AgencyClients_AgencyProfileId_BrandProfileId",
+                table: "AgencyClients",
+                columns: new[] { "AgencyProfileId", "BrandProfileId" },
+                unique: true,
+                filter: "[Active] = 1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AgencyClients_BrandProfileId",
+                table: "AgencyClients",
+                column: "BrandProfileId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AgencyProfiles_UserId",
+                table: "AgencyProfiles",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BrandProfiles_UserId",
+                table: "BrandProfiles",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_InfluencerAssets_InfluencerId",
                 table: "InfluencerAssets",
+                column: "InfluencerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InfluencerBusinesses_InfluencerId",
+                table: "InfluencerBusinesses",
                 column: "InfluencerId");
 
             migrationBuilder.CreateIndex(
@@ -422,7 +564,13 @@ namespace Infrastructure.Migrations.AppDb
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AgencyClients");
+
+            migrationBuilder.DropTable(
                 name: "InfluencerAssets");
+
+            migrationBuilder.DropTable(
+                name: "InfluencerBusinesses");
 
             migrationBuilder.DropTable(
                 name: "InfluencerMedia");
@@ -453,6 +601,12 @@ namespace Infrastructure.Migrations.AppDb
 
             migrationBuilder.DropTable(
                 name: "VerificationRequests");
+
+            migrationBuilder.DropTable(
+                name: "AgencyProfiles");
+
+            migrationBuilder.DropTable(
+                name: "BrandProfiles");
 
             migrationBuilder.DropTable(
                 name: "ServiceListings");

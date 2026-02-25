@@ -12,7 +12,7 @@ namespace InfluX.Controllers.Api
 {
     [ApiController]
     [Route("api/InfluencerBusinesses")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Influencer")]
     public class InfluencerBusinessApiController : ControllerBase
     {
         private readonly AppDBContext _appDb;
@@ -35,7 +35,7 @@ namespace InfluX.Controllers.Api
         // =========================================================
         // GET: api/InfluencerBusinesses/GetMyInfluencerBusinesses
         // =========================================================
-        [HttpGet("GetMyInfluencerBusinesses")]
+        [HttpGet("GetInfluencerBusinesses")]
         public async Task<ActionResult<ApiResponse<List<InfluencerBusinessDto>>>> GetMyInfluencerBusinesses()
         {
             var userId = GetUserId();

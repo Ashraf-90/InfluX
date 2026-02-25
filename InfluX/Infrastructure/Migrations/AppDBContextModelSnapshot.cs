@@ -4,19 +4,16 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Infrastructure.Migrations.AppDb
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20260213141620_InitialApp")]
-    partial class InitialApp
+    partial class AppDBContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,6 +21,89 @@ namespace Infrastructure.Migrations.AppDb
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Domain.Entities.AgencyClient", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("AgencyProfileId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BrandProfileId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsAvilable")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandProfileId");
+
+                    b.HasIndex("AgencyProfileId", "BrandProfileId")
+                        .IsUnique()
+                        .HasFilter("[Active] = 1");
+
+                    b.ToTable("AgencyClients");
+                });
+
+            modelBuilder.Entity("Domain.Entities.AgencyProfile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("AgencyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAvilable")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LogoUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Website")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("AgencyProfiles");
+                });
 
             modelBuilder.Entity("Domain.Entities.ApplicationUser", b =>
                 {
@@ -97,6 +177,57 @@ namespace Infrastructure.Migrations.AppDb
                         });
                 });
 
+            modelBuilder.Entity("Domain.Entities.BrandProfile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("BrandName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Industry")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAvilable")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LogoUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Website")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("BrandProfiles");
+                });
+
             modelBuilder.Entity("Domain.Entities.InfluencerAsset", b =>
                 {
                     b.Property<Guid>("Id")
@@ -141,6 +272,50 @@ namespace Infrastructure.Migrations.AppDb
                     b.HasIndex("InfluencerId");
 
                     b.ToTable("InfluencerAssets");
+                });
+
+            modelBuilder.Entity("Domain.Entities.InfluencerBusiness", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("BusinessType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("InfluencerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsAvilable")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Logo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SocialAccountsJson")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InfluencerId");
+
+                    b.ToTable("InfluencerBusinesses");
                 });
 
             modelBuilder.Entity("Domain.Entities.InfluencerMedia", b =>
@@ -648,10 +823,62 @@ namespace Infrastructure.Migrations.AppDb
                     b.ToTable("VerificationRequests");
                 });
 
+            modelBuilder.Entity("Domain.Entities.AgencyClient", b =>
+                {
+                    b.HasOne("Domain.Entities.AgencyProfile", "AgencyProfile")
+                        .WithMany("AgencyClients")
+                        .HasForeignKey("AgencyProfileId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.BrandProfile", "BrandProfile")
+                        .WithMany("AgencyClients")
+                        .HasForeignKey("BrandProfileId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AgencyProfile");
+
+                    b.Navigation("BrandProfile");
+                });
+
+            modelBuilder.Entity("Domain.Entities.AgencyProfile", b =>
+                {
+                    b.HasOne("Domain.Entities.ApplicationUser", "User")
+                        .WithOne("AgencyProfile")
+                        .HasForeignKey("Domain.Entities.AgencyProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Entities.BrandProfile", b =>
+                {
+                    b.HasOne("Domain.Entities.ApplicationUser", "User")
+                        .WithOne("BrandProfile")
+                        .HasForeignKey("Domain.Entities.BrandProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Domain.Entities.InfluencerAsset", b =>
                 {
                     b.HasOne("Domain.Entities.ApplicationUser", "Influencer")
                         .WithMany("InfluencerAssets")
+                        .HasForeignKey("InfluencerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Influencer");
+                });
+
+            modelBuilder.Entity("Domain.Entities.InfluencerBusiness", b =>
+                {
+                    b.HasOne("Domain.Entities.ApplicationUser", "Influencer")
+                        .WithMany("InfluencerBusinesses")
                         .HasForeignKey("InfluencerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -774,9 +1001,20 @@ namespace Infrastructure.Migrations.AppDb
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.Entities.AgencyProfile", b =>
+                {
+                    b.Navigation("AgencyClients");
+                });
+
             modelBuilder.Entity("Domain.Entities.ApplicationUser", b =>
                 {
+                    b.Navigation("AgencyProfile");
+
+                    b.Navigation("BrandProfile");
+
                     b.Navigation("InfluencerAssets");
+
+                    b.Navigation("InfluencerBusinesses");
 
                     b.Navigation("InfluencerMedia");
 
@@ -793,6 +1031,11 @@ namespace Infrastructure.Migrations.AppDb
                     b.Navigation("UserProfile");
 
                     b.Navigation("VerificationRequests");
+                });
+
+            modelBuilder.Entity("Domain.Entities.BrandProfile", b =>
+                {
+                    b.Navigation("AgencyClients");
                 });
 
             modelBuilder.Entity("Domain.Entities.KeyWords", b =>

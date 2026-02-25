@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations.AuthDb
 {
     /// <inheritdoc />
-    public partial class InitialAuth : Migration
+    public partial class AuthNewDataBaseMigrationAll : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
