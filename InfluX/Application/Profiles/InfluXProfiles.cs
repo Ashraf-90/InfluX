@@ -73,6 +73,36 @@ namespace Application.Profiles
             CreateMap<InfluencerBusiness, InfluencerBusinessDto>().ReverseMap();
             CreateMap<InfluencerBusiness, InfluencerBusinessCreateDto>().ReverseMap();
             CreateMap<InfluencerBusiness, InfluencerBusinessUpdateDto>().ReverseMap();
+
+
+            CreateMap<Campaign, CampaignDto>().ReverseMap();
+            CreateMap<Campaign, CampaignCreateDto>().ReverseMap();
+            CreateMap<Campaign, CampaignUpdateDto>().ReverseMap();
+
+            CreateMap<CampaignRequirement, CampaignRequirementDto>().ReverseMap();
+            CreateMap<CampaignRequirement, CampaignRequirementCreateDto>().ReverseMap();
+            CreateMap<CampaignRequirement, CampaignRequirementUpdateDto>().ReverseMap();
+
+            CreateMap<CampaignInvite, CampaignInviteDto>().ReverseMap();
+            CreateMap<CampaignInvite, CampaignInviteCreateDto>().ReverseMap();
+            CreateMap<CampaignInvite, CampaignInviteUpdateDto>().ReverseMap();
+
+
+            CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<Order, OrderCreateDto>().ReverseMap();
+            CreateMap<Order, OrderUpdateDto>().ReverseMap();
+
+            CreateMap<OrderDeliverable, OrderDeliverableDto>().ReverseMap();
+            CreateMap<OrderDeliverable, OrderDeliverableCreateDto>().ReverseMap();
+            CreateMap<OrderDeliverable, OrderDeliverableUpdateDto>().ReverseMap();
+
+            CreateMap<OrderApproval, OrderApprovalDto>().ReverseMap();
+            CreateMap<OrderApproval, OrderApprovalCreateDto>().ReverseMap();
+            CreateMap<OrderApproval, OrderApprovalUpdateDto>().ReverseMap();
+
+            CreateMap<Dispute, DisputeDto>().ReverseMap();
+            CreateMap<Dispute, DisputeCreateDto>().ReverseMap();
+            CreateMap<Dispute, DisputeUpdateDto>().ReverseMap();
         }
     }
 }

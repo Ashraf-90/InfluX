@@ -28,6 +28,13 @@ namespace Domain.Abstractions
         IRepository<AgencyProfile> AgencyProfiles { get; }
         IRepository<AgencyClient> AgencyClients { get; }
         IRepository<InfluencerBusiness> InfluencerBusinesses { get; }
+        IRepository<Campaign> Campaigns { get; }
+        IRepository<CampaignRequirement> CampaignRequirements { get; }
+        IRepository<CampaignInvite> CampaignInvites { get; }
+        IRepository<Order> Orders { get; }
+        IRepository<OrderDeliverable> OrderDeliverables { get; }
+        IRepository<OrderApproval> OrderApprovals { get; }
+        IRepository<Dispute> Disputes { get; }
 
         Task<int> CompleteAsync();
         Task<int> SaveChangesAsync();

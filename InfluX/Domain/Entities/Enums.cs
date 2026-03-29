@@ -70,5 +70,53 @@ namespace Domain.Entities
         Agency = 1,
         Company = 2
     }
+
+    public enum CampaignStatus
+    {
+        Draft = 1,
+        Open = 2,
+        InProgress = 3,
+        Completed = 4,
+        Cancelled = 5
+    }
+
+    public enum CampaignInviteStatus
+    {
+        Sent = 1,
+        Accepted = 2,
+        Declined = 3
+    }
+
+    public enum OrderStatus
+    {
+        Pending = 1,
+        Accepted = 2,
+        InProduction = 3,
+        Submitted = 4,
+        Approved = 5,
+        Rejected = 6,
+        Cancelled = 7
+    }
+
+    public enum OrderDeliverableType
+    {
+        File = 1,
+        Url = 2,
+        Text = 3
+    }
+
+    public enum OrderApprovalStatus
+    {
+        Approved = 1,
+        Rejected = 2
+    }
+
+    public enum DisputeStatus
+    {
+        Open = 1,
+        InReview = 2,
+        Resolved = 3,
+        Refunded = 4
+    }
 }
 

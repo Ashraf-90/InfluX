@@ -96,6 +96,13 @@ builder.Services.AddScoped<IBrandProfileServices, BrandProfileServices>();
 builder.Services.AddScoped<IAgencyProfileServices, AgencyProfileServices>();
 builder.Services.AddScoped<IAgencyClientServices, AgencyClientServices>();
 builder.Services.AddScoped<IInfluencerBusinessServices, InfluencerBusinessServices>();
+builder.Services.AddScoped<ICampaignServices, CampaignServices>();
+builder.Services.AddScoped<ICampaignRequirementServices, CampaignRequirementServices>();
+builder.Services.AddScoped<ICampaignInviteServices, CampaignInviteServices>();
+builder.Services.AddScoped<IOrderServices, OrderServices>();
+builder.Services.AddScoped<IOrderDeliverableServices, OrderDeliverableServices>();
+builder.Services.AddScoped<IOrderApprovalServices, OrderApprovalServices>();
+builder.Services.AddScoped<IDisputeServices, DisputeServices>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

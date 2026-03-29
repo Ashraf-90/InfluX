@@ -32,6 +32,15 @@ namespace Infrastructure.Persistence.Reposities
         private IRepository<AgencyClient> _AgencyClients;
         private IRepository<InfluencerBusiness> _InfluencerBusinesses;
 
+        private IRepository<Campaign> _Campaigns;
+        private IRepository<CampaignRequirement> _CampaignRequirements;
+        private IRepository<CampaignInvite> _CampaignInvites;
+
+        private IRepository<Order> _Orders;
+        private IRepository<OrderDeliverable> _OrderDeliverables;
+        private IRepository<OrderApproval> _OrderApprovals;
+        private IRepository<Dispute> _Disputes;
+
         public UnitOfWork(AppDBContext context)
         {
             _context = context;
@@ -62,6 +71,15 @@ namespace Infrastructure.Persistence.Reposities
         public IRepository<AgencyProfile> AgencyProfiles => _AgencyProfiles ??= new Repository<AgencyProfile>(_context);
         public IRepository<AgencyClient> AgencyClients => _AgencyClients ??= new Repository<AgencyClient>(_context);
         public IRepository<InfluencerBusiness> InfluencerBusinesses => _InfluencerBusinesses ??= new Repository<InfluencerBusiness>(_context);
+
+        public IRepository<Campaign> Campaigns => _Campaigns ??= new Repository<Campaign>(_context);
+        public IRepository<CampaignRequirement> CampaignRequirements => _CampaignRequirements ??= new Repository<CampaignRequirement>(_context);
+        public IRepository<CampaignInvite> CampaignInvites => _CampaignInvites ??= new Repository<CampaignInvite>(_context);
+
+        public IRepository<Order> Orders => _Orders ??= new Repository<Order>(_context);
+        public IRepository<OrderDeliverable> OrderDeliverables => _OrderDeliverables ??= new Repository<OrderDeliverable>(_context);
+        public IRepository<OrderApproval> OrderApprovals => _OrderApprovals ??= new Repository<OrderApproval>(_context);
+        public IRepository<Dispute> Disputes => _Disputes ??= new Repository<Dispute>(_context);
 
         public async Task<int> CompleteAsync() => await _context.SaveChangesAsync();
         public async Task<int> SaveChangesAsync() => await _context.SaveChangesAsync();
