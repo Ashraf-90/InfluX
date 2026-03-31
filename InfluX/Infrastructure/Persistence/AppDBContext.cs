@@ -41,6 +41,16 @@ namespace Infrastructure.Persistence
         public DbSet<AgencyClient> AgencyClients { get; set; }
         public DbSet<InfluencerBusiness> InfluencerBusinesses { get; set; }
 
+
+        public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<CampaignRequirement> CampaignRequirements { get; set; }
+        public DbSet<CampaignInvite> CampaignInvites { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDeliverable> OrderDeliverables { get; set; }
+        public DbSet<OrderApproval> OrderApprovals { get; set; }
+        public DbSet<Dispute> Disputes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -189,6 +199,107 @@ namespace Infrastructure.Persistence
                     method?.Invoke(null, new object[] { modelBuilder });
                 }
             }
+
+
+            // =========================
+            // NEW: Campaigns
+            // =========================
+            modelBuilder.Entity<Campaign>()
+                .HasOne(x => x.Brand)
+                .WithMany(x => x.BrandCampaigns)
+                .HasForeignKey(x => x.BrandId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Campaign>()
+                .HasOne(x => x.Agency)
+                .WithMany(x => x.AgencyCampaigns)
+                .HasForeignKey(x => x.AgencyId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CampaignRequirement>()
+                .HasOne(x => x.Campaign)
+                .WithOne(x => x.CampaignRequirement)
+                .HasForeignKey<CampaignRequirement>(x => x.CampaignId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CampaignInvite>()
+                .HasOne(x => x.Campaign)
+                .WithMany(x => x.CampaignInvites)
+                .HasForeignKey(x => x.CampaignId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CampaignInvite>()
+                .HasOne(x => x.Influencer)
+                .WithMany(x => x.CampaignInvites)
+                .HasForeignKey(x => x.InfluencerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CampaignInvite>()
+                .HasIndex(x => new { x.CampaignId, x.InfluencerId })
+                .IsUnique()
+                .HasFilter("[Active] = 1");
+
+            modelBuilder.Entity<Campaign>().Property(x => x.TotalBudget).HasPrecision(18, 2);
+
+
+            // =========================
+            // NEW: Orders
+            // =========================
+            modelBuilder.Entity<Order>()
+                .HasOne(x => x.Campaign)
+                .WithMany()
+                .HasForeignKey(x => x.CampaignId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(x => x.Buyer)
+                .WithMany(x => x.BuyerOrders)
+                .HasForeignKey(x => x.BuyerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(x => x.Influencer)
+                .WithMany(x => x.InfluencerOrders)
+                .HasForeignKey(x => x.InfluencerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(x => x.ServiceListing)
+                .WithMany(x => x.Orders)
+                .HasForeignKey(x => x.ServiceListingId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<OrderDeliverable>()
+                .HasOne(x => x.Order)
+                .WithMany(x => x.OrderDeliverables)
+                .HasForeignKey(x => x.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<OrderApproval>()
+                .HasOne(x => x.Order)
+                .WithMany(x => x.OrderApprovals)
+                .HasForeignKey(x => x.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<OrderApproval>()
+                .HasOne(x => x.ApprovedByUser)
+                .WithMany(x => x.OrderApprovals)
+                .HasForeignKey(x => x.ApprovedBy)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Dispute>()
+                .HasOne(x => x.Order)
+                .WithMany(x => x.Disputes)
+                .HasForeignKey(x => x.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Dispute>()
+                .HasOne(x => x.OpenedByUser)
+                .WithMany(x => x.OpenedDisputes)
+                .HasForeignKey(x => x.OpenedBy)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Order>().Property(x => x.AgreedPrice).HasPrecision(18, 2);
         }
 
         private static void SetSoftDeleteFilter<TEntity>(ModelBuilder modelBuilder) where TEntity : Common

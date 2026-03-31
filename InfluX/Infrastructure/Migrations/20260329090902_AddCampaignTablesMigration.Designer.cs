@@ -4,6 +4,7 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260329090902_AddCampaignTablesMigration")]
+    partial class AddCampaignTablesMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -366,49 +369,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("CampaignRequirements");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Dispute", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsAvilable")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("OpenedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Reason")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ResolutionNotes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OpenedBy");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("Disputes");
-                });
-
             modelBuilder.Entity("Domain.Entities.InfluencerAsset", b =>
                 {
                     b.Property<Guid>("Id")
@@ -690,140 +650,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Niches");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Order", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<decimal>("AgreedPrice")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("BuyerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CampaignId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("InfluencerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsAvilable")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Platform")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("ServiceListingId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BuyerId");
-
-                    b.HasIndex("CampaignId");
-
-                    b.HasIndex("InfluencerId");
-
-                    b.HasIndex("ServiceListingId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("Domain.Entities.OrderApproval", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("ApprovedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Feedback")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsAvilable")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApprovedBy");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderApprovals");
-                });
-
-            modelBuilder.Entity("Domain.Entities.OrderDeliverable", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsAvilable")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("SubmittedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UrlOrText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderDeliverables");
                 });
 
             modelBuilder.Entity("Domain.Entities.Pixels", b =>
@@ -1227,25 +1053,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Campaign");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Dispute", b =>
-                {
-                    b.HasOne("Domain.Entities.ApplicationUser", "OpenedByUser")
-                        .WithMany("OpenedDisputes")
-                        .HasForeignKey("OpenedBy")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Order", "Order")
-                        .WithMany("Disputes")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("OpenedByUser");
-
-                    b.Navigation("Order");
-                });
-
             modelBuilder.Entity("Domain.Entities.InfluencerAsset", b =>
                 {
                     b.HasOne("Domain.Entities.ApplicationUser", "Influencer")
@@ -1288,69 +1095,6 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Order", b =>
-                {
-                    b.HasOne("Domain.Entities.ApplicationUser", "Buyer")
-                        .WithMany("BuyerOrders")
-                        .HasForeignKey("BuyerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Campaign", "Campaign")
-                        .WithMany()
-                        .HasForeignKey("CampaignId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Domain.Entities.ApplicationUser", "Influencer")
-                        .WithMany("InfluencerOrders")
-                        .HasForeignKey("InfluencerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.ServiceListing", "ServiceListing")
-                        .WithMany("Orders")
-                        .HasForeignKey("ServiceListingId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Buyer");
-
-                    b.Navigation("Campaign");
-
-                    b.Navigation("Influencer");
-
-                    b.Navigation("ServiceListing");
-                });
-
-            modelBuilder.Entity("Domain.Entities.OrderApproval", b =>
-                {
-                    b.HasOne("Domain.Entities.ApplicationUser", "ApprovedByUser")
-                        .WithMany("OrderApprovals")
-                        .HasForeignKey("ApprovedBy")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Order", "Order")
-                        .WithMany("OrderApprovals")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApprovedByUser");
-
-                    b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("Domain.Entities.OrderDeliverable", b =>
-                {
-                    b.HasOne("Domain.Entities.Order", "Order")
-                        .WithMany("OrderDeliverables")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Domain.Entities.ServiceListing", b =>
@@ -1461,8 +1205,6 @@ namespace Infrastructure.Migrations
 
                     b.Navigation("BrandProfile");
 
-                    b.Navigation("BuyerOrders");
-
                     b.Navigation("CampaignInvites");
 
                     b.Navigation("InfluencerAssets");
@@ -1471,13 +1213,7 @@ namespace Infrastructure.Migrations
 
                     b.Navigation("InfluencerMedia");
 
-                    b.Navigation("InfluencerOrders");
-
                     b.Navigation("InfluencerProfile");
-
-                    b.Navigation("OpenedDisputes");
-
-                    b.Navigation("OrderApprovals");
 
                     b.Navigation("ServiceListings");
 
@@ -1514,19 +1250,8 @@ namespace Infrastructure.Migrations
                     b.Navigation("UserNiches");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Order", b =>
-                {
-                    b.Navigation("Disputes");
-
-                    b.Navigation("OrderApprovals");
-
-                    b.Navigation("OrderDeliverables");
-                });
-
             modelBuilder.Entity("Domain.Entities.ServiceListing", b =>
                 {
-                    b.Navigation("Orders");
-
                     b.Navigation("PricingOptions");
                 });
 #pragma warning restore 612, 618

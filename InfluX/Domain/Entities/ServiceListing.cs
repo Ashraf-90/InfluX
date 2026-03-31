@@ -24,6 +24,7 @@ namespace Domain.Entities
         public ListingStatus Status { get; set; } = ListingStatus.Active;
 
         public ICollection<ServicePricingOption> PricingOptions { get; set; } = new List<ServicePricingOption>();
+        public ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }
 

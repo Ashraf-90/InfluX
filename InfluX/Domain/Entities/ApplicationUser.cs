@@ -34,6 +34,16 @@ namespace Domain.Entities
 
 
         public ICollection<InfluencerBusiness> InfluencerBusinesses { get; set; } = new List<InfluencerBusiness>();
+
+
+        public ICollection<Campaign> BrandCampaigns { get; set; } = new List<Campaign>();
+        public ICollection<Campaign> AgencyCampaigns { get; set; } = new List<Campaign>();
+        public ICollection<CampaignInvite> CampaignInvites { get; set; } = new List<CampaignInvite>();
+
+        public ICollection<Order> BuyerOrders { get; set; } = new List<Order>();
+        public ICollection<Order> InfluencerOrders { get; set; } = new List<Order>();
+        public ICollection<OrderApproval> OrderApprovals { get; set; } = new List<OrderApproval>();
+        public ICollection<Dispute> OpenedDisputes { get; set; } = new List<Dispute>();
     }
 }
 
