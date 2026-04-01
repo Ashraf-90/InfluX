@@ -17,5 +17,8 @@ namespace Domain.Entities
         public string? LogoUrl { get; set; }
 
         public ICollection<AgencyClient> AgencyClients { get; set; } = new List<AgencyClient>();
+
+        // NEW
+        public ICollection<AgencyBrand> AgencyBrands { get; set; } = new List<AgencyBrand>();
     }
 }

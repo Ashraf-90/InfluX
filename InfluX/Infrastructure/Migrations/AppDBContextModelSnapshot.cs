@@ -22,6 +22,41 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.Entities.AgencyBrand", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("AgencyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsAvilable")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("AgencyId", "BrandId")
+                        .IsUnique()
+                        .HasFilter("[Active] = 1");
+
+                    b.ToTable("AgencyBrands");
+                });
+
             modelBuilder.Entity("Domain.Entities.AgencyClient", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1138,6 +1173,25 @@ namespace Infrastructure.Migrations
                     b.ToTable("VerificationRequests");
                 });
 
+            modelBuilder.Entity("Domain.Entities.AgencyBrand", b =>
+                {
+                    b.HasOne("Domain.Entities.AgencyProfile", "Agency")
+                        .WithMany("AgencyBrands")
+                        .HasForeignKey("AgencyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.BrandProfile", "Brand")
+                        .WithMany("AgencyBrands")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Agency");
+
+                    b.Navigation("Brand");
+                });
+
             modelBuilder.Entity("Domain.Entities.AgencyClient", b =>
                 {
                     b.HasOne("Domain.Entities.AgencyProfile", "AgencyProfile")
@@ -1448,6 +1502,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.AgencyProfile", b =>
                 {
+                    b.Navigation("AgencyBrands");
+
                     b.Navigation("AgencyClients");
                 });
 
@@ -1494,6 +1550,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.BrandProfile", b =>
                 {
+                    b.Navigation("AgencyBrands");
+
                     b.Navigation("AgencyClients");
                 });
 

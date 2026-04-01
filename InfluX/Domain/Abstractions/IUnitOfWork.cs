@@ -27,6 +27,10 @@ namespace Domain.Abstractions
         IRepository<BrandProfile> BrandProfiles { get; }
         IRepository<AgencyProfile> AgencyProfiles { get; }
         IRepository<AgencyClient> AgencyClients { get; }
+
+        // NEW
+        IRepository<AgencyBrand> AgencyBrands { get; }
+
         IRepository<InfluencerBusiness> InfluencerBusinesses { get; }
         IRepository<Campaign> Campaigns { get; }
         IRepository<CampaignRequirement> CampaignRequirements { get; }

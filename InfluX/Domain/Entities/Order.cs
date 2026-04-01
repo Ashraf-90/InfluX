@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
@@ -12,9 +15,13 @@ namespace Domain.Entities
         public Campaign? Campaign { get; set; }
 
         public Guid BuyerId { get; set; }
+
+        [InverseProperty(nameof(ApplicationUser.BuyerOrders))]
         public ApplicationUser Buyer { get; set; } = null!;
 
         public Guid InfluencerId { get; set; }
+
+        [InverseProperty(nameof(ApplicationUser.InfluencerOrders))]
         public ApplicationUser Influencer { get; set; } = null!;
 
         public Guid? ServiceListingId { get; set; }
@@ -22,7 +29,6 @@ namespace Domain.Entities
 
         public string Title { get; set; } = null!;
         public decimal AgreedPrice { get; set; }
-
         public string? Platform { get; set; }
 
         public OrderStatus Status { get; set; } = OrderStatus.Pending;

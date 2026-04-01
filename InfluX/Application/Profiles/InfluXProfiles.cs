@@ -11,7 +11,7 @@ namespace Application.Profiles
             // Identity
             CreateMap<ApplicationUser, IdentityUserDto>()
                 .ForMember(d => d.UserId, m => m.MapFrom(s => s.Id))
-                .ForMember(d => d.Id, m => m.MapFrom(s => s.Id)); // CommonDto.Id
+                .ForMember(d => d.Id, m => m.MapFrom(s => s.Id));
 
             // Profiles
             CreateMap<UserProfile, UserProfileDto>().ReverseMap();
@@ -70,10 +70,22 @@ namespace Application.Profiles
             CreateMap<AgencyClient, AgencyClientCreateDto>().ReverseMap();
             CreateMap<AgencyClient, AgencyClientUpdateDto>().ReverseMap();
 
+            // NEW
+            CreateMap<AgencyBrand, AgencyBrandDto>()
+                .ForMember(d => d.AgencyName, m => m.MapFrom(s => s.Agency.AgencyName))
+                .ForMember(d => d.BrandName, m => m.MapFrom(s => s.Brand.BrandName))
+                .ForMember(d => d.Website, m => m.MapFrom(s => s.Brand.Website))
+                .ForMember(d => d.LogoUrl, m => m.MapFrom(s => s.Brand.LogoUrl))
+                .ForMember(d => d.Industry, m => m.MapFrom(s => s.Brand.Industry))
+                .ForMember(d => d.Country, m => m.MapFrom(s => s.Brand.Country))
+                .ForMember(d => d.City, m => m.MapFrom(s => s.Brand.City));
+
+            CreateMap<AgencyBrand, AgencyBrandCreateDto>().ReverseMap();
+            CreateMap<AgencyBrand, AgencyBrandUpdateDto>().ReverseMap();
+
             CreateMap<InfluencerBusiness, InfluencerBusinessDto>().ReverseMap();
             CreateMap<InfluencerBusiness, InfluencerBusinessCreateDto>().ReverseMap();
             CreateMap<InfluencerBusiness, InfluencerBusinessUpdateDto>().ReverseMap();
-
 
             CreateMap<Campaign, CampaignDto>().ReverseMap();
             CreateMap<Campaign, CampaignCreateDto>().ReverseMap();
@@ -86,7 +98,6 @@ namespace Application.Profiles
             CreateMap<CampaignInvite, CampaignInviteDto>().ReverseMap();
             CreateMap<CampaignInvite, CampaignInviteCreateDto>().ReverseMap();
             CreateMap<CampaignInvite, CampaignInviteUpdateDto>().ReverseMap();
-
 
             CreateMap<Order, OrderDto>().ReverseMap();
             CreateMap<Order, OrderCreateDto>().ReverseMap();
@@ -106,4 +117,3 @@ namespace Application.Profiles
         }
     }
 }
-

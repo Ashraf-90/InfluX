@@ -39,6 +39,7 @@ namespace Infrastructure.Persistence
         public DbSet<BrandProfile> BrandProfiles { get; set; }
         public DbSet<AgencyProfile> AgencyProfiles { get; set; }
         public DbSet<AgencyClient> AgencyClients { get; set; }
+        public DbSet<AgencyBrand> AgencyBrands { get; set; }
         public DbSet<InfluencerBusiness> InfluencerBusinesses { get; set; }
 
 
@@ -166,6 +167,28 @@ namespace Infrastructure.Persistence
                 .HasIndex(x => new { x.AgencyProfileId, x.BrandProfileId })
                 .IsUnique()
                 .HasFilter("[Active] = 1"); // SQL Server
+
+
+            // =========================
+            // NEW: AgencyBrands (AgencyProfile + BrandProfile)
+            // =========================
+            modelBuilder.Entity<AgencyBrand>()
+                .HasOne(x => x.Agency)
+                .WithMany(x => x.AgencyBrands)
+                .HasForeignKey(x => x.AgencyId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AgencyBrand>()
+                .HasOne(x => x.Brand)
+                .WithMany(x => x.AgencyBrands)
+                .HasForeignKey(x => x.BrandId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // منع تكرار نفس العلاقة AgencyProfile + BrandProfile (مع SoftDelete)
+            modelBuilder.Entity<AgencyBrand>()
+                .HasIndex(x => new { x.AgencyId, x.BrandId })
+                .IsUnique()
+                .HasFilter("[Active] = 1");
 
             // =========================
             // NEW: InfluencerBusiness (1:N)

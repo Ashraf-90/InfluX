@@ -30,6 +30,10 @@ namespace Infrastructure.Persistence.Reposities
         private IRepository<BrandProfile> _BrandProfiles;
         private IRepository<AgencyProfile> _AgencyProfiles;
         private IRepository<AgencyClient> _AgencyClients;
+
+        // NEW
+        private IRepository<AgencyBrand> _AgencyBrands;
+
         private IRepository<InfluencerBusiness> _InfluencerBusinesses;
 
         private IRepository<Campaign> _Campaigns;
@@ -66,10 +70,13 @@ namespace Infrastructure.Persistence.Reposities
         public IRepository<InfluencerMedia> InfluencerMedia => _InfluencerMedia ??= new Repository<InfluencerMedia>(_context);
         public IRepository<InfluencerAsset> InfluencerAssets => _InfluencerAssets ??= new Repository<InfluencerAsset>(_context);
 
-
         public IRepository<BrandProfile> BrandProfiles => _BrandProfiles ??= new Repository<BrandProfile>(_context);
         public IRepository<AgencyProfile> AgencyProfiles => _AgencyProfiles ??= new Repository<AgencyProfile>(_context);
         public IRepository<AgencyClient> AgencyClients => _AgencyClients ??= new Repository<AgencyClient>(_context);
+
+        // NEW
+        public IRepository<AgencyBrand> AgencyBrands => _AgencyBrands ??= new Repository<AgencyBrand>(_context);
+
         public IRepository<InfluencerBusiness> InfluencerBusinesses => _InfluencerBusinesses ??= new Repository<InfluencerBusiness>(_context);
 
         public IRepository<Campaign> Campaigns => _Campaigns ??= new Repository<Campaign>(_context);

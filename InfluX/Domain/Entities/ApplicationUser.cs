@@ -40,6 +40,7 @@ namespace Domain.Entities
         public ICollection<Campaign> AgencyCampaigns { get; set; } = new List<Campaign>();
         public ICollection<CampaignInvite> CampaignInvites { get; set; } = new List<CampaignInvite>();
 
+
         public ICollection<Order> BuyerOrders { get; set; } = new List<Order>();
         public ICollection<Order> InfluencerOrders { get; set; } = new List<Order>();
         public ICollection<OrderApproval> OrderApprovals { get; set; } = new List<OrderApproval>();

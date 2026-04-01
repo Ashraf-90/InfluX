@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
@@ -38,9 +37,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
 .AddEntityFrameworkStores<AuthDbContext>()
 .AddDefaultTokenProviders();
 
-// =======================
-// JWT (For Mobile APIs)
-// =======================
+// JWT
 builder.Services.AddAuthentication()
     .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
     {
@@ -59,7 +56,6 @@ builder.Services.AddAuthentication()
         };
     });
 
-// JWT service
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 
 builder.Services.ConfigureApplicationCookie(opt =>
@@ -69,18 +65,14 @@ builder.Services.ConfigureApplicationCookie(opt =>
     opt.AccessDeniedPath = "/Auth/AccessDenied";
 });
 
-// UoW uses AppDBContext only
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-// Existing services
 builder.Services.AddScoped<IMetaPagesServices, MetaPagesServices>();
 builder.Services.AddScoped<IKeyWordsServices, KeyWordsServices>();
 builder.Services.AddScoped<IPixelsServices, PixelsServices>();
 
-// Identity service
 builder.Services.AddScoped<IIdentityUserServices, IdentityUserServices>();
 
-// CRUD services
 builder.Services.AddScoped<INicheServices, NicheServices>();
 builder.Services.AddScoped<IUserNicheServices, UserNicheServices>();
 builder.Services.AddScoped<IUserKeyWordServices, UserKeyWordServices>();
@@ -95,6 +87,10 @@ builder.Services.AddScoped<IInfluencerAssetServices, InfluencerAssetServices>();
 builder.Services.AddScoped<IBrandProfileServices, BrandProfileServices>();
 builder.Services.AddScoped<IAgencyProfileServices, AgencyProfileServices>();
 builder.Services.AddScoped<IAgencyClientServices, AgencyClientServices>();
+
+// NEW
+builder.Services.AddScoped<IAgencyBrandServices, AgencyBrandServices>();
+
 builder.Services.AddScoped<IInfluencerBusinessServices, InfluencerBusinessServices>();
 builder.Services.AddScoped<ICampaignServices, CampaignServices>();
 builder.Services.AddScoped<ICampaignRequirementServices, CampaignRequirementServices>();
