@@ -36,7 +36,11 @@
               "RelativeDocumentMoniker": "Domain\\Entities\\Enums.cs",
               "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Domain\\Entities\\Enums.cs",
               "RelativeToolTip": "Domain\\Entities\\Enums.cs",
+<<<<<<< HEAD
               "ViewState": "AgIAACIAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+=======
+              "ViewState": "AgIAACEAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
+>>>>>>> 872c2f7788643ce1d2f3f8ae75b7a27ae8baeda0
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-31T08:53:06.085Z",
               "EditorCaption": ""
