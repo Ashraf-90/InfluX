@@ -21,8 +21,9 @@ namespace Domain.Entities
         public string? City { get; set; }
 
         public ICollection<AgencyClient> AgencyClients { get; set; } = new List<AgencyClient>();
+        public ICollection<AgencyBrand> AgencyBrands { get; set; } = new List<AgencyBrand>();
 
         // NEW
-        public ICollection<AgencyBrand> AgencyBrands { get; set; } = new List<AgencyBrand>();
+        public ICollection<Campaign> Campaigns { get; set; } = new List<Campaign>();
     }
 }

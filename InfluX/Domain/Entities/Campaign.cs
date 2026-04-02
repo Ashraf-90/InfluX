@@ -9,15 +9,13 @@ namespace Domain.Entities
 {
     public class Campaign : Common
     {
-        public Guid BrandId { get; set; }
+        // Required always
+        public Guid BrandProfileId { get; set; }
+        public BrandProfile BrandProfile { get; set; } = null!;
 
-        [InverseProperty(nameof(ApplicationUser.BrandCampaigns))]
-        public ApplicationUser Brand { get; set; } = null!;
-
-        public Guid? AgencyId { get; set; }
-
-        [InverseProperty(nameof(ApplicationUser.AgencyCampaigns))]
-        public ApplicationUser? Agency { get; set; }
+        // Null when campaign is created directly by Brand
+        public Guid? AgencyProfileId { get; set; }
+        public AgencyProfile? AgencyProfile { get; set; }
 
         public string Title { get; set; } = null!;
         public string? Objective { get; set; }
