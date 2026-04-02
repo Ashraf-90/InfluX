@@ -272,10 +272,16 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("AgencyId")
+                    b.Property<Guid?>("AgencyProfileId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BrandId")
+                    b.Property<Guid?>("ApplicationUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ApplicationUserId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BrandProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateDate")
@@ -309,9 +315,13 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AgencyId");
+                    b.HasIndex("AgencyProfileId");
 
-                    b.HasIndex("BrandId");
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("ApplicationUserId1");
+
+                    b.HasIndex("BrandProfileId");
 
                     b.ToTable("Campaigns");
                 });
@@ -419,7 +429,13 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("OpenedBy")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("OpenedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("OrderId1")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Reason")
@@ -437,9 +453,11 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OpenedBy");
+                    b.HasIndex("OpenedByUserId");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("OrderId1");
 
                     b.ToTable("Disputes");
                 });
@@ -796,6 +814,9 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("ApprovedBy")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("ApprovedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
@@ -808,6 +829,9 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("OrderId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -816,9 +840,11 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApprovedBy");
+                    b.HasIndex("ApprovedByUserId");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("OrderId1");
 
                     b.ToTable("OrderApprovals");
                 });
@@ -841,6 +867,9 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("OrderId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("SubmittedAt")
                         .HasColumnType("datetime2");
 
@@ -857,6 +886,8 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("OrderId1");
 
                     b.ToTable("OrderDeliverables");
                 });
@@ -1235,20 +1266,28 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Campaign", b =>
                 {
-                    b.HasOne("Domain.Entities.ApplicationUser", "Agency")
-                        .WithMany("AgencyCampaigns")
-                        .HasForeignKey("AgencyId")
+                    b.HasOne("Domain.Entities.AgencyProfile", "AgencyProfile")
+                        .WithMany("Campaigns")
+                        .HasForeignKey("AgencyProfileId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("Domain.Entities.ApplicationUser", "Brand")
+                    b.HasOne("Domain.Entities.ApplicationUser", null)
+                        .WithMany("AgencyCampaigns")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Domain.Entities.ApplicationUser", null)
                         .WithMany("BrandCampaigns")
-                        .HasForeignKey("BrandId")
+                        .HasForeignKey("ApplicationUserId1");
+
+                    b.HasOne("Domain.Entities.BrandProfile", "BrandProfile")
+                        .WithMany("Campaigns")
+                        .HasForeignKey("BrandProfileId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Agency");
+                    b.Navigation("AgencyProfile");
 
-                    b.Navigation("Brand");
+                    b.Navigation("BrandProfile");
                 });
 
             modelBuilder.Entity("Domain.Entities.CampaignInvite", b =>
@@ -1285,15 +1324,19 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.ApplicationUser", "OpenedByUser")
                         .WithMany("OpenedDisputes")
-                        .HasForeignKey("OpenedBy")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("OpenedByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Order", "Order")
-                        .WithMany("Disputes")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entities.Order", null)
+                        .WithMany("Disputes")
+                        .HasForeignKey("OrderId1");
 
                     b.Navigation("OpenedByUser");
 
@@ -1365,8 +1408,7 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Domain.Entities.ServiceListing", "ServiceListing")
                         .WithMany("Orders")
-                        .HasForeignKey("ServiceListingId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("ServiceListingId");
 
                     b.Navigation("Buyer");
 
@@ -1381,15 +1423,19 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.ApplicationUser", "ApprovedByUser")
                         .WithMany("OrderApprovals")
-                        .HasForeignKey("ApprovedBy")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("ApprovedByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Order", "Order")
-                        .WithMany("OrderApprovals")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entities.Order", null)
+                        .WithMany("OrderApprovals")
+                        .HasForeignKey("OrderId1");
 
                     b.Navigation("ApprovedByUser");
 
@@ -1399,10 +1445,14 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.OrderDeliverable", b =>
                 {
                     b.HasOne("Domain.Entities.Order", "Order")
-                        .WithMany("OrderDeliverables")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entities.Order", null)
+                        .WithMany("OrderDeliverables")
+                        .HasForeignKey("OrderId1");
 
                     b.Navigation("Order");
                 });
@@ -1505,6 +1555,8 @@ namespace Infrastructure.Migrations
                     b.Navigation("AgencyBrands");
 
                     b.Navigation("AgencyClients");
+
+                    b.Navigation("Campaigns");
                 });
 
             modelBuilder.Entity("Domain.Entities.ApplicationUser", b =>
@@ -1553,6 +1605,8 @@ namespace Infrastructure.Migrations
                     b.Navigation("AgencyBrands");
 
                     b.Navigation("AgencyClients");
+
+                    b.Navigation("Campaigns");
                 });
 
             modelBuilder.Entity("Domain.Entities.Campaign", b =>

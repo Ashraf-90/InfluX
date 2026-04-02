@@ -10,9 +10,6 @@ namespace Infrastructure.Persistence
     {
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) { }
 
-        // =========================
-        // Domain Tables
-        // =========================
         public DbSet<MetaPages> MetaPages { get; set; }
         public DbSet<KeyWords> KeyWords { get; set; }
         public DbSet<Pixels> Pixels { get; set; }
@@ -33,15 +30,11 @@ namespace Infrastructure.Persistence
         public DbSet<InfluencerMedia> InfluencerMedia { get; set; }
         public DbSet<InfluencerAsset> InfluencerAssets { get; set; }
 
-        // =========================
-        // NEW Tables (Outside green box)
-        // =========================
         public DbSet<BrandProfile> BrandProfiles { get; set; }
         public DbSet<AgencyProfile> AgencyProfiles { get; set; }
         public DbSet<AgencyClient> AgencyClients { get; set; }
         public DbSet<AgencyBrand> AgencyBrands { get; set; }
         public DbSet<InfluencerBusiness> InfluencerBusinesses { get; set; }
-
 
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<CampaignRequirement> CampaignRequirements { get; set; }
@@ -56,16 +49,8 @@ namespace Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-            // =========================
-            // IMPORTANT:
-            // Use Identity users table, but DO NOT create it from AppDBContext migrations
-            // =========================
             modelBuilder.Entity<ApplicationUser>()
                 .ToTable("AspNetUsers", t => t.ExcludeFromMigrations());
-
-            // =========================
-            // Relationships to ApplicationUser (AspNetUsers)
-            // =========================
 
             modelBuilder.Entity<UserProfile>()
                 .HasOne(x => x.User)
@@ -129,32 +114,23 @@ namespace Infrastructure.Persistence
                 .WithMany(x => x.InfluencerAssets)
                 .HasForeignKey(x => x.InfluencerId);
 
-            // =========================
-            // NEW: BrandProfile (1:1)
-            // =========================
             modelBuilder.Entity<BrandProfile>()
                 .HasOne(x => x.User)
                 .WithOne(x => x.BrandProfile)
                 .HasForeignKey<BrandProfile>(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // =========================
-            // NEW: AgencyProfile (1:1)
-            // =========================
             modelBuilder.Entity<AgencyProfile>()
                 .HasOne(x => x.User)
                 .WithOne(x => x.AgencyProfile)
                 .HasForeignKey<AgencyProfile>(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // =========================
-            // NEW: AgencyClients (AgencyId + BrandId => Users)
-            // =========================
             modelBuilder.Entity<AgencyClient>()
-            .HasOne(x => x.AgencyProfile)
-            .WithMany(x => x.AgencyClients)
-            .HasForeignKey(x => x.AgencyProfileId)
-            .OnDelete(DeleteBehavior.Restrict);
+                .HasOne(x => x.AgencyProfile)
+                .WithMany(x => x.AgencyClients)
+                .HasForeignKey(x => x.AgencyProfileId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<AgencyClient>()
                 .HasOne(x => x.BrandProfile)
@@ -162,16 +138,11 @@ namespace Infrastructure.Persistence
                 .HasForeignKey(x => x.BrandProfileId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // منع تكرار نفس العلاقة AgencyProfile + BrandProfile (مع SoftDelete)
             modelBuilder.Entity<AgencyClient>()
                 .HasIndex(x => new { x.AgencyProfileId, x.BrandProfileId })
                 .IsUnique()
-                .HasFilter("[Active] = 1"); // SQL Server
+                .HasFilter("[Active] = 1");
 
-
-            // =========================
-            // NEW: AgencyBrands (AgencyProfile + BrandProfile)
-            // =========================
             modelBuilder.Entity<AgencyBrand>()
                 .HasOne(x => x.Agency)
                 .WithMany(x => x.AgencyBrands)
@@ -184,32 +155,33 @@ namespace Infrastructure.Persistence
                 .HasForeignKey(x => x.BrandId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // منع تكرار نفس العلاقة AgencyProfile + BrandProfile (مع SoftDelete)
             modelBuilder.Entity<AgencyBrand>()
                 .HasIndex(x => new { x.AgencyId, x.BrandId })
                 .IsUnique()
                 .HasFilter("[Active] = 1");
 
-            // =========================
-            // NEW: InfluencerBusiness (1:N)
-            // =========================
             modelBuilder.Entity<InfluencerBusiness>()
                 .HasOne(x => x.Influencer)
                 .WithMany(x => x.InfluencerBusinesses)
                 .HasForeignKey(x => x.InfluencerId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // =========================
-            // Decimal precision (remove truncation warnings)
-            // =========================
-            modelBuilder.Entity<SocialAccount>().Property(x => x.EngagementRate).HasPrecision(10, 2);
-            modelBuilder.Entity<ServiceListing>().Property(x => x.BasePrice).HasPrecision(18, 2);
-            modelBuilder.Entity<ServicePricingOption>().Property(x => x.Price).HasPrecision(18, 2);
-            modelBuilder.Entity<InfluencerAsset>().Property(x => x.RetailPrice).HasPrecision(18, 2);
+            modelBuilder.Entity<SocialAccount>()
+                .Property(x => x.EngagementRate)
+                .HasPrecision(10, 2);
 
-            // =========================
-            // SoftDelete filter for Common entities
-            // =========================
+            modelBuilder.Entity<ServiceListing>()
+                .Property(x => x.BasePrice)
+                .HasPrecision(18, 2);
+
+            modelBuilder.Entity<ServicePricingOption>()
+                .Property(x => x.Price)
+                .HasPrecision(18, 2);
+
+            modelBuilder.Entity<InfluencerAsset>()
+                .Property(x => x.RetailPrice)
+                .HasPrecision(18, 2);
+
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
                 if (entityType.ClrType.IsSubclassOf(typeof(Common)))
@@ -223,20 +195,16 @@ namespace Infrastructure.Persistence
                 }
             }
 
-
-            // =========================
-            // NEW: Campaigns
-            // =========================
             modelBuilder.Entity<Campaign>()
-                .HasOne(x => x.Brand)
-                .WithMany(x => x.BrandCampaigns)
-                .HasForeignKey(x => x.BrandId)
+                .HasOne(x => x.BrandProfile)
+                .WithMany(x => x.Campaigns)
+                .HasForeignKey(x => x.BrandProfileId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Campaign>()
-                .HasOne(x => x.Agency)
-                .WithMany(x => x.AgencyCampaigns)
-                .HasForeignKey(x => x.AgencyId)
+                .HasOne(x => x.AgencyProfile)
+                .WithMany(x => x.Campaigns)
+                .HasForeignKey(x => x.AgencyProfileId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<CampaignRequirement>()
@@ -262,12 +230,10 @@ namespace Infrastructure.Persistence
                 .IsUnique()
                 .HasFilter("[Active] = 1");
 
-            modelBuilder.Entity<Campaign>().Property(x => x.TotalBudget).HasPrecision(18, 2);
+            modelBuilder.Entity<Campaign>()
+                .Property(x => x.TotalBudget)
+                .HasPrecision(18, 2);
 
-
-            // =========================
-            // NEW: Orders
-            // =========================
             modelBuilder.Entity<Order>()
                 .HasOne(x => x.Campaign)
                 .WithMany()
@@ -287,74 +253,93 @@ namespace Infrastructure.Persistence
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Order>()
-                .HasOne(x => x.ServiceListing)
-                .WithMany(x => x.Orders)
-                .HasForeignKey(x => x.ServiceListingId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .Property(x => x.AgreedPrice)
+                .HasPrecision(18, 2);
 
             modelBuilder.Entity<OrderDeliverable>()
                 .HasOne(x => x.Order)
-                .WithMany(x => x.OrderDeliverables)
+                .WithMany()
                 .HasForeignKey(x => x.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<OrderApproval>()
                 .HasOne(x => x.Order)
-                .WithMany(x => x.OrderApprovals)
+                .WithMany()
                 .HasForeignKey(x => x.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<OrderApproval>()
-                .HasOne(x => x.ApprovedByUser)
-                .WithMany(x => x.OrderApprovals)
-                .HasForeignKey(x => x.ApprovedBy)
-                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Dispute>()
                 .HasOne(x => x.Order)
-                .WithMany(x => x.Disputes)
+                .WithMany()
                 .HasForeignKey(x => x.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Dispute>()
-                .HasOne(x => x.OpenedByUser)
-                .WithMany(x => x.OpenedDisputes)
-                .HasForeignKey(x => x.OpenedBy)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Order>().Property(x => x.AgreedPrice).HasPrecision(18, 2);
         }
 
-        private static void SetSoftDeleteFilter<TEntity>(ModelBuilder modelBuilder) where TEntity : Common
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        private static void SetSoftDeleteFilter<TEntity>(ModelBuilder modelBuilder)
+            where TEntity : Common
         {
             modelBuilder.Entity<TEntity>().HasQueryFilter(x => x.Active);
         }
 
         public override int SaveChanges()
         {
-            ApplyCommonDates();
+            ApplyAudit();
             return base.SaveChanges();
+        }
+
+        public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        {
+            ApplyAudit();
+            return base.SaveChanges(acceptAllChangesOnSuccess);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            ApplyCommonDates();
+            ApplyAudit();
             return base.SaveChangesAsync(cancellationToken);
         }
 
-        private void ApplyCommonDates()
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        {
+            ApplyAudit();
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
+        private void ApplyAudit()
         {
             var now = DateTime.UtcNow;
 
             foreach (var entry in ChangeTracker.Entries())
             {
-                if (entry.Entity is Common common &&
-                    (entry.State == EntityState.Added || entry.State == EntityState.Modified))
+                if (entry.Entity is Common e)
                 {
                     if (entry.State == EntityState.Added)
-                        common.CreateDate = now;
+                    {
+                        e.CreateDate = now;
+                        e.UpdateDate = now;
+                    }
+                    else if (entry.State == EntityState.Modified)
+                    {
+                        e.UpdateDate = now;
+                    }
+                }
 
-                    common.UpdateDate = now;
+                if (entry.Entity is ApplicationUser u)
+                {
+                    if (entry.State == EntityState.Added)
+                    {
+                        u.CreateDate = now;
+                        u.UpdateDate = now;
+                    }
+                    else if (entry.State == EntityState.Modified)
+                    {
+                        u.UpdateDate = now;
+                    }
                 }
             }
         }

@@ -3,12 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B35E9062-5489-46F7-91AE-6526E7AD28EE}|Domain\\Domain.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\domain\\entities\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B35E9062-5489-46F7-91AE-6526E7AD28EE}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\application\\dtos\\campaigndtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBE62DAD-60A4-48ED-A263-2E687C923D2B}|Application\\Application.csproj|solutionrelative:application\\dtos\\campaigndtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\influx\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|solutionrelative:influx\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{B35E9062-5489-46F7-91AE-6526E7AD28EE}|Domain\\Domain.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\domain\\entities\\agencyprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B35E9062-5489-46F7-91AE-6526E7AD28EE}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\agencyprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Migrations\\20260402104314_RefactorCampaignToUseProfilesMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Migrations\\20260402104314_RefactorCampaignToUseProfilesMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2626B76-32C5-4B64-B482-E93C54441BA5}|Infrastructure\\Infrastructure.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\infrastructure\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2626B76-32C5-4B64-B482-E93C54441BA5}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\influx\\controllers\\api\\campaignapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D3DB8FE-49D3-40E3-9A2A-C5F275A33D3C}|InfluX\\InfluX.csproj|solutionrelative:influx\\controllers\\api\\campaignapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B35E9062-5489-46F7-91AE-6526E7AD28EE}|Domain\\Domain.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\domain\\entities\\brandprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B35E9062-5489-46F7-91AE-6526E7AD28EE}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\brandprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B35E9062-5489-46F7-91AE-6526E7AD28EE}|Domain\\Domain.csproj|c:\\users\\wisdo\\documents\\github\\influx\\influx\\domain\\entities\\campaign.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B35E9062-5489-46F7-91AE-6526E7AD28EE}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\campaign.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,32 +50,94 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Enums.cs",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Domain\\Entities\\Enums.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\Enums.cs",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Domain\\Entities\\Enums.cs",
-              "RelativeToolTip": "Domain\\Entities\\Enums.cs",
-<<<<<<< HEAD
-              "ViewState": "AgIAACIAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
-=======
-              "ViewState": "AgIAACEAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
->>>>>>> 872c2f7788643ce1d2f3f8ae75b7a27ae8baeda0
+              "DocumentIndex": 2,
+              "Title": "20260402104314_RefactorCampaignToUseProfilesMigration.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Migrations\\20260402104314_RefactorCampaignToUseProfilesMigration.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20260402104314_RefactorCampaignToUseProfilesMigration.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Migrations\\20260402104314_RefactorCampaignToUseProfilesMigration.cs",
+              "RelativeToolTip": "Infrastructure\\Migrations\\20260402104314_RefactorCampaignToUseProfilesMigration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T08:53:06.085Z",
+              "WhenOpened": "2026-04-02T10:43:14.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CampaignApiController.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Controllers\\Api\\CampaignApiController.cs",
+              "RelativeDocumentMoniker": "InfluX\\Controllers\\Api\\CampaignApiController.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\Controllers\\Api\\CampaignApiController.cs",
+              "RelativeToolTip": "InfluX\\Controllers\\Api\\CampaignApiController.cs",
+              "ViewState": "AgIAACoCAAAAAAAAAAAcwE4CAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T10:37:50.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Persistence\\AppDBContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\AppDBContext.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Infrastructure\\Persistence\\AppDBContext.cs",
+              "RelativeToolTip": "Infrastructure\\Persistence\\AppDBContext.cs",
+              "ViewState": "AgIAADYBAAAAAAAAAAAYwFoBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T10:37:18.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CampaignDtos.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\DTOs\\CampaignDtos.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\CampaignDtos.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Application\\DTOs\\CampaignDtos.cs",
+              "RelativeToolTip": "Application\\DTOs\\CampaignDtos.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T10:36:43.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BrandProfile.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Domain\\Entities\\BrandProfile.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\BrandProfile.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Domain\\Entities\\BrandProfile.cs",
+              "RelativeToolTip": "Domain\\Entities\\BrandProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T10:36:18.914Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\appsettings.json",
-              "RelativeDocumentMoniker": "InfluX\\appsettings.json",
-              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\InfluX\\appsettings.json",
-              "RelativeToolTip": "InfluX\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-31T07:59:56.799Z"
+              "Title": "AgencyProfile.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Domain\\Entities\\AgencyProfile.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\AgencyProfile.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Domain\\Entities\\AgencyProfile.cs",
+              "RelativeToolTip": "Domain\\Entities\\AgencyProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T10:35:59.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Campaign.cs",
+              "DocumentMoniker": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Domain\\Entities\\Campaign.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Campaign.cs",
+              "ToolTip": "C:\\Users\\wisdo\\Documents\\GitHub\\InfluX\\InfluX\\Domain\\Entities\\Campaign.cs",
+              "RelativeToolTip": "Domain\\Entities\\Campaign.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T10:35:32.387Z",
+              "EditorCaption": ""
             }
           ]
         }
